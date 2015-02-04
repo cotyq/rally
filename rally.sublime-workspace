@@ -1,0 +1,433 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"if",
+				"if	if"
+			],
+			[
+				"wh",
+				"width"
+			],
+			[
+				"marca",
+				"marcaMasCercana"
+			],
+			[
+				"marker",
+				"markers"
+			],
+			[
+				"nav",
+				"navbar"
+			],
+			[
+				"pad",
+				"padding-top"
+			],
+			[
+				"controller",
+				"angular: $controller"
+			],
+			[
+				"lee",
+				"leerPaquete"
+			],
+			[
+				"get",
+				"getConfiguracion"
+			],
+			[
+				"dep",
+				"depureSelectSockList"
+			],
+			[
+				"existe",
+				"existeConexion"
+			],
+			[
+				"interfaz",
+				"interfazServidor"
+			],
+			[
+				"except",
+				"exception"
+			],
+			[
+				"exce",
+				"exception"
+			],
+			[
+				"otener",
+				"obtenerPaquete"
+			],
+			[
+				"log",
+				"logger"
+			],
+			[
+				"nombre",
+				"nombre"
+			],
+			[
+				"Atr",
+				"AttributeError"
+			],
+			[
+				"ex",
+				"excepcion"
+			],
+			[
+				"con",
+				"configuracionLogger"
+			],
+			[
+				"exe",
+				"exception"
+			],
+			[
+				"exc",
+				"except"
+			],
+			[
+				"nombr",
+				"nombreArchivo"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "home.html",
+			"settings":
+			{
+				"buffer_size": 4626,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 472.0
+	},
+	"console":
+	{
+		"height": 118.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/marcos/Desktop/anguar-rally/app/home/home.js",
+		"/C/Users/marcos/Desktop/anguar-rally/app/home/home.html",
+		"/C/Users/marcos/Desktop/anguar-rally/app/inicio/inicio.js",
+		"/C/Users/marcos/Desktop/anguar-rally/app/assets/css/app.css",
+		"/C/Users/marcos/Desktop/rally/index.html",
+		"/C/Users/marcos/Desktop/anguar-rally/app/index.html",
+		"/C/Users/marcos/Desktop/anguar-rally/app/nav.html",
+		"/C/Users/marcos/Desktop/anguar-rally/app/app.js",
+		"/C/Users/marcos/Desktop/anguar-rally/app/inicio/inicio.html",
+		"/C/Users/marcos/Desktop/anguar-rally/nav.html",
+		"/C/Users/marcos/Desktop/anguar-rally/app/inicio/inicio_test.js",
+		"/C/Users/marcos/Desktop/rally/map.js",
+		"/C/Users/marcos/Desktop/rally/solicitar.html",
+		"/C/Users/marcos/Desktop/rally/home.html",
+		"/C/Users/marcos/Desktop/web/app/index.html",
+		"/C/Users/marcos/Desktop/web2.0/app/index.html",
+		"/C/Users/marcos/Desktop/rally/nueva.html",
+		"/C/Users/marcos/Desktop/map/index.html",
+		"/C/Users/marcos/Desktop/map/map.js",
+		"/C/Users/marcos/Desktop/map.js",
+		"/C/Users/marcos/Desktop/gmap.html",
+		"/C/Users/marcos/Desktop/web2.0/app/gCasas/gCasas.html",
+		"/C/Users/marcos/Desktop/web simple/app/index.html",
+		"/C/Users/marcos/Desktop/web simple/app/view1/view1.js",
+		"/C/Users/marcos/Desktop/web simple/app/view1/view1.html",
+		"/C/Users/marcos/Desktop/web2.0/app/gCasas/crearCasa.html",
+		"/C/Users/marcos/Desktop/web2.0/app/gCasas/gCasas.js",
+		"/C/Users/marcos/Desktop/web2.0/app/app.js",
+		"/C/Users/marcos/Desktop/web2.0/app/gCasas/map.js",
+		"/C/Users/marcos/Desktop/web2.0/app/gCasas/.js",
+		"/C/Users/marcos/Desktop/web/app/vistas/GestionarCasas.html",
+		"/C/Users/marcos/Desktop/web/app/app.js",
+		"/C/Users/marcos/Desktop/Proyecto/python/pythonSinReset/interfazRadios.py",
+		"/C/Users/marcos/Desktop/Proyecto/python/programasinDeferred/interfazRadios.py",
+		"/C/Users/marcos/Desktop/Proyecto/python/python viejo/interfazRadios.py",
+		"/C/Users/marcos/Desktop/Proyecto/svn/interfazServidor.py",
+		"/C/Users/marcos/Desktop/Proyecto/svn/settings.py",
+		"/C/Program Files (x86)/Left 4 Dead 2/left4dead2/cfg/config.cfg"
+	],
+	"find":
+	{
+		"height": 37.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"$rootScope",
+			"23",
+			"style",
+			"css",
+			"Cover tem",
+			"assets/js",
+			"js/",
+			"js/bo",
+			"position",
+			"map.js",
+			"asse",
+			"form",
+			"true",
+			"items",
+			"myInput",
+			"view",
+			"archivopuerto",
+			"anunciosarc",
+			"direccionbase",
+			"os.open",
+			"fileno",
+			"anunciosArchivo",
+			"os.open",
+			"open",
+			"self.archivoPuerto",
+			"RadioMananger.execute_callbacks(paquete)",
+			"joinradio",
+			"execute_callbacks",
+			"read",
+			"read(",
+			"read",
+			"joinradio",
+			"fileno()",
+			"archivoPuerto.fileno",
+			"write",
+			"read",
+			"tty",
+			"setraw",
+			"setra",
+			"x0f",
+			"write",
+			"raspberry",
+			"raw",
+			"setraw",
+			"joinradio",
+			"joinRadio",
+			"errno",
+			"read",
+			"Run -> Pooler EPOLLHUP",
+			"prueba",
+			"configura",
+			"config",
+			"PRUEBA",
+			"open",
+			"enviarm",
+			"ENVIARmE",
+			"reset",
+			"write",
+			"enviar",
+			"enviarmen",
+			"fileno",
+			"self.archivopuerto ",
+			"self.archivopuerto",
+			"archivoPuerto",
+			"enviarMensaje",
+			"enviarPaquete",
+			"idRouter",
+			"leftRadio",
+			"settings",
+			"memorySave",
+			"configura",
+			"kep",
+			"send",
+			"sendCommand",
+			"sendCommand\n",
+			"keep alive",
+			"receive",
+			"killed",
+			"kill",
+			"self.proto",
+			"sockproto",
+			"kill",
+			"sockproto.py : sockProtocoll : ",
+			"kill",
+			"self.kil",
+			"kill",
+			"killCallbackSocket",
+			"LOGGER",
+			"LOGGER.DEBUG",
+			"DESCONECTADO DEL SERVIDOR",
+			"DESCONECTADO DEL SERVIDOR\nDESCONECTADO DEL SERVIDOR\nDESCONECTADO DEL SERVIDOR",
+			"DESCONECTADO DEL SERVIDOR\nDESCONECTADO DEL SERVIDOR\nDESCONECTAD DEL SERVIDOR",
+			"DESCONECTADO DEL SERVIDOR\n",
+			"logger",
+			"lleganDatos",
+			"reset",
+			"radioreset",
+			"dnt900.setc",
+			"setConf",
+			"my_logger",
+			"setConfiguracion",
+			"logging.exception",
+			"self.getcon",
+			"getconfiguracion",
+			"getconfi",
+			"radioRemota(",
+			"radioRemota",
+			"direccion",
+			"directorio",
+			"direccionbase",
+			"getConfiguracion",
+			"self.radioBase.getConfiguracion",
+			"direccion",
+			"direccionbase",
+			"self.direccion",
+			"direccionbase",
+			"direccion",
+			"direccionbase",
+			"directorio",
+			"tipo_radio",
+			"joinradio",
+			"tipo_radio",
+			"getconfi",
+			"joinradio",
+			"self.direccion",
+			"getconf",
+			"fullpath"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"configuracionLogger",
+			"logging.error",
+			"dnt900.getConfiguracion"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "home.html",
+					"settings":
+					{
+						"buffer_size": 4626,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2466,
+								2466
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/AngularJS/AngularJS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 630.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 176.0,
+	"status_bar_visible": true
+}

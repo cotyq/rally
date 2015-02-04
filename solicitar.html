@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+   <title>gmaps.js &mdash; the easiest way to use Google Maps</title>
+    <!-- Bootstrap core CSS -->
+
+    <!-- Custom styles for this template -->
+    <link href="bootstrap/css/jumbotron.css" rel="stylesheet">
+
+
+  <!-- Latest compiled and minified JavaScript -->  
+  <script type="text/javascript"  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDwySW4YIvbeRHhfJVJQ1R0p4IPYqI6fC4&sensor=true">  </script>
+      <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Including  jQuery Dialog UI Here-->
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/ui-darkness/jquery-ui.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script type="text/javascript" src="map.js"></script>
+  <script type="text/javascript" src="solicitar.js"></script>
+
+    <style type="text/css">
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;  
+        padding: 0px
+      }
+      .container{
+        height: 100%;
+      }
+      .mapa{
+        height: 70%;
+      }
+      #map_canvas { height: 100% }
+
+      .contenido{
+        padding-top: 5em;
+        height: 100%;
+      }
+
+      .ubicacion-contenedor{
+        height: 100%;
+        position: static;
+        padding: 0em 7em 0em 7em;
+        background-color: #C3D9FF;
+
+      }
+
+      .progreso1{
+          background-color: #C3D9FF;
+
+      }
+      .progreso2{
+          background-color: #EEEEEE;
+
+      }
+      .progreso3{
+          background-color: #EEEEEE;
+
+      }
+      .navbar-fixed-top{
+        border: 0;
+      }
+
+      .accesorios{
+  height: 100%;
+  width: 100%;
+  background-color: #EEEEEE;
+
+}
+
+.verificacion{
+  height: 100%;
+  width: 100%;
+  background-color: #EEEEEE;
+}
+    </style>
+<style type="text/css">
+  .ui-dialog
+{
+background: #EEEEEE;
+padding: 1em;
+}
+
+.ui-dialog .ui-widget-header
+{
+background: #222;
+text-align: center;
+padding: 1px;
+border-radius: 0.3em;
+}
+
+.ui-dialog .ui-dialog-titlebar
+{
+color: white;
+font-family: arial;
+text-align: center;
+}
+
+.ui-dialog .ui-widget-content{
+padding: 0.2em;
+color: black;
+background-color: #EEEEEE;
+
+}
+
+
+.ui-dialog .ui-dialog-title {
+    float: none;
+    text-align: center;
+}
+
+</style>
+
+
+
+
+
+
+</head>
+<body onload="initialize()">
+
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header" id="arriva">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Soluciones Golondrina</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-inverse-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="home.html">Inicio</a></li>
+            <li class="active" class="dropdown">
+              <a href="" class="dropdown-toggle" data-toggle="dropdown">Gestionar Casas Usuario<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li ><a href="solicitar.html">Solicitar</a></li>
+                <li><a href="#">Estado Actual</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Informes</li>
+                <li><a href="#">Reparacion</a></li>
+                <li><a href="#">Contacto</a></li>
+                <li><a href="#">Devoluciones</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="" class="dropdown-toggle" data-toggle="dropdown">Gestionar Casas Administrador<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header">Gestionar Casas</li>
+                <li><a href="nueva.html">Crear</a></li>
+                <li><a href="#/GCasas">Listado</a></li>
+                 <li class="dropdown-header">Gestionar Partes</li>
+                <li><a href="#/GCasas">Crear</a></li>
+                <li><a href="#/GCasas">Listado</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Informes</li>
+                <li><a href="#">Solicitudes</a></li>
+                <li><a href="#">Devoluciones</a></li>
+              </ul>
+            </li>
+            <li><a href="index.html">Cerrar sesión</a></li>
+          </ul>
+        </div>
+      </div>
+
+          <div class="progreso1 col-md-4">
+              <h3><center><strong><a id="l1" href="#ubicacion-contenedor">Seleccionar ubicacion</a> </strong></center></h3>
+            <br>
+        </div>
+        <div class="progreso2 col-md-4">
+              <h3><center><strong><a id="l2" href="#accesorios">Seleccione de Accesorios</a> </strong></center></h3>
+            <br>
+        </div>
+        <div class="progreso3 col-md-4">
+              <h3><center><strong><a id="l3" href="#verificacion">Verificacion y validacion</a> </strong></center></h3>
+            <br>
+        </div>
+             
+    </nav>   
+        <section class="contenido">
+         
+          <div  class="ubicacion-contenedor" id="ubicacion-contenedor">
+            <center><h3>Seleccione un punto en el mapa o ingrese el nombre de una ciudad cercana</h3>
+            </center>
+            <br>
+            <div class="mapa col-md-6">
+              <div id="map_canvas" style="width:100%; height:100%"></div>
+            </div>
+              <div class="col-md-6">
+              <form action="" method="post" onsubmit= "return buscarCaminos()">  
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-8 control-label">Escriba una localizacion</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="ubicacion" placeholder="Santa fe, Argentina">
+                  </div>
+                </div>
+                <div class="form-group">
+
+                  <div class="col-sm-10" style="text-align:center"> 
+                      <br>
+                    <button id="buscar" onclick="buscarCaminos()" type="button" class="btn btn-success">Buscar casas</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-12">
+                        <div id="panel_ruta"></div>
+            </div>
+          </div>
+  
+      </section>
+      
+        <div class="accesorios" id="accesorios">
+
+        </div>
+        <div class="verificacion" id="verificacion">
+
+        </div>
+
+  </body>
+  <div id="dialog" title="Datos incorrectos">
+  <span class="ui-icon  ui-icon-closethick"></span>   
+<p>Debe seleccionar una posicion en el mapa o escribir una ubicacion.</p>
+</div>
+
+
+
+</html>
+
