@@ -88,7 +88,8 @@
 
 .accesorios{
   padding-top:5em;
-  padding-bottom: 2em;
+  padding-bottom: 10em;
+  transform: translate3d(0,0.5px,.7px) scale(1);
 }
 
 .accesorios_botoner{
@@ -100,7 +101,7 @@
   width: 100%;
 
   background-color: #EEEEEE;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+ box-shadow: 0 0 6px rgba(0,0,0,.4);
 }
 .verificacion{
   height: 100%;
@@ -294,20 +295,21 @@ background-color: #EEEEEE;
           <div class="accesorios container" id="accesorios">
             <div id="accesorios_tabla"  class="col-md-8 col-md-offset-2" >
             <div class="accesorios_titulo">Accesorios/Partes</div>
-
-            <div  class="accesorios_items" ng-repeat="accesorio in accesorios">
-              <div class="row">
-                <div class="col-md-2"><img ng-src="img/{{accesorio.imagen}}" class="img-thumbnail" height="110"> </div>
-                <div class="col-md-10">
-                  <div class="accesorio_titulo">{{ accesorio.nombre}}</div>
-                  <div class="col-md-9">{{ accesorio.descripcion}}</div>
-                  <div class="col-md-3 accesorio_cantidad"><p>Cantidad</p> <p><input type="number" class="form-control"   value="0" required></p></div>
+            <form id="form_accesorios" ng-submit="validarAccesorios()" >
+              <div  class="accesorios_items" ng-repeat="accesorio in accesorios">
+                <div class="row">
+                  <div class="col-md-2"><img ng-src="img/{{accesorio.imagen}}" class="img-thumbnail" height="110"> </div>
+                  <div class="col-md-10">
+                    <div class="accesorio_titulo">{{ accesorio.nombre}}</div>
+                    <div class="col-md-9">{{ accesorio.descripcion}}</div>
+                    <div class="col-md-3 accesorio_cantidad"><p>Cantidad</p> <p><input ng-model="accesorio.cantidad" type="number" class="form-control"   value="0" required></p></div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="accesorios_botoner">
-                <button ng-click="validar"  class="btn btn-primary"  >Completar</button>
-            </div>
+              <div class="accesorios_botoner">
+                  <button type="submit"   class="btn btn-primary" >Completar</button>
+              </div>
+            </form>
           </div>
         </div>
 
