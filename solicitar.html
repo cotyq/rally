@@ -143,11 +143,18 @@
   border-bottom: groove;
 }
 
+.accesorios_items:nth-child(2n+0){
+  background-color: #DAD6CC;
+}
 .accesorios_items:hover{
   background-color: #A2D1E0;
 }
 
-
+.accesorios_items:hover .accesorios_imagen{
+  -webkit-transform: rotate(30deg);
+ -moz-transform: rotate(30deg);
+ transform: rotate(30deg);
+} 
 
 .ui-dialog
 {
@@ -277,13 +284,13 @@ background-color: #EEEEEE;
                 <div class="form-group">
                   <label for="cantidad" class="col-sm-8 control-label">Cantidad</label>
                   <div class="col-sm-9">
-                    <input  type="number" class="form-control" id="cantidad" placeholder="Cantidad" required>
+                    <input  type="number" class="form-control" id="cantidad" placeholder="Cantidad" min="1" required>
                   </div>
                 </div>
                 <div class="form-group">  
                   <div class="col-sm-10" style="text-align:center"> 
                       <br>
-                    <button id="buscar" onclick="buscarCaminos()" type="submit" class="btn btn-success">Buscar casas</button>
+                    <button id="buscar" ng-click="buscarCaminos()" type="submit" class="btn btn-success">Buscar casas</button>
                   </div>
                 </div>
               </form>
@@ -296,13 +303,13 @@ background-color: #EEEEEE;
             <div id="accesorios_tabla"  class="col-md-8 col-md-offset-2" >
             <div class="accesorios_titulo">Accesorios/Partes</div>
             <form id="form_accesorios" ng-submit="validarAccesorios()" >
-              <div  class="accesorios_items" ng-repeat="accesorio in accesorios">
+              <div  class="accesorios_items"  ng-repeat="accesorio in accesorios">
                 <div class="row">
-                  <div class="col-md-2"><img ng-src="img/{{accesorio.imagen}}" class="img-thumbnail" height="110"> </div>
+                  <div class="col-md-2"><img ng-src="img/{{accesorio.imagen}}" class="img-thumbnail accesorios_imagen" height="110"> </div>
                   <div class="col-md-10">
                     <div class="accesorio_titulo">{{ accesorio.nombre}}</div>
                     <div class="col-md-9">{{ accesorio.descripcion}}</div>
-                    <div class="col-md-3 accesorio_cantidad"><p>Cantidad</p> <p><input ng-model="accesorio.cantidad" type="number" class="form-control"   value="0" required></p></div>
+                    <div class="col-md-3 accesorio_cantidad"><p>Cantidad</p> <p><input ng-model="accesorio.cantidad" min="0" type="number" class="form-control"   value="0" required></p></div>
                   </div>
                 </div>
               </div>
