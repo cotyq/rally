@@ -309,7 +309,7 @@ background-color: #EEEEEE;
                   <div class="col-md-10">
                     <div class="accesorio_titulo">{{ accesorio.nombre}}</div>
                     <div class="col-md-9">{{ accesorio.descripcion}}</div>
-                    <div class="col-md-3 accesorio_cantidad"><p>Cantidad</p> <p><input ng-model="accesorio.cantidad" min="0" type="number" class="form-control"   value="0" required></p></div>
+                    <div class="col-md-3 accesorio_cantidad"><p>Cantidad</p> <p><input ng-model="accesorio.cantidad" min="0" type="number" class="form-control"   ng-disabled="completado" required></p></div>
                   </div>
                 </div>
               </div>
