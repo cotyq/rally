@@ -3,6 +3,8 @@ function marcarLineas(){
     var dist  = 9999999999;
     var marcaMasCercana ;
     var ubicacion = document.getElementById('ubicacion').value;
+    var cantidad = document.getElementById('cantidad').value;
+    
     console.log(ubicacion);
     if(markers[0]==undefined ){
       alert("Debe seleccionar una posicion en el mapa.")
@@ -14,7 +16,7 @@ function marcarLineas(){
             map: map,
             icon: 'casa2.png',
           });
-          if(parseInt(distancia) < parseInt(dist)){
+          if(parseInt(distancia) < parseInt(dist) && cantidad<= marker.cantidad){
             marcaMasCercana = marker;
             dist = distancia;
           }
@@ -97,6 +99,7 @@ function obtenerCamino(origen){
   var dist  = 9999999999;
   var marcaMasCercana ;
   var mejorRespuesta  ;
+  var cantidad = document.getElementById('cantidad').value;
 
   casasExistentes.forEach(function(marker) {
       var distancia = Dist(marker.lat,marker.lon,origen.geometry.location.k,origen.geometry.location.D);
@@ -105,50 +108,58 @@ function obtenerCamino(origen){
         map: map,
         icon: 'casa2.png',
       });
-      if(parseInt(distancia) < parseInt(dist)){
+      if(parseInt(distancia) < parseInt(dist) && cantidad<= marker.cantidad){
         marcaMasCercana = marker;
         dist = distancia;
       }
   });
   console.log(origen.formatted_address);
-  var request = {
-   origin: origen.formatted_address,
-   destination: marcaMasCercana.lat+","+marcaMasCercana.lon,
-   travelMode: google.maps.TravelMode.DRIVING,
-   unitSystem: google.maps.UnitSystem.METRIC,
-    avoidHighways: false,
-    avoidTolls: false
-   };
-   
-  
-  directionsService.route(request, function(response, status) {
-      if (status == google.maps.DirectionsStatus.OK) {
-          directionsDisplay.setMap(map);
-          //directionsDisplay.setPanel($("#panel_ruta").get(0));
-          directionsDisplay.setDirections(response);
-          if(markers[0]!=undefined) {markers[0].setMap(null);}
+  if(marcaMasCercana!=undefined){
+      var request = {
+     origin: origen.formatted_address,
+     destination: marcaMasCercana.lat+","+marcaMasCercana.lon,
+     travelMode: google.maps.TravelMode.DRIVING,
+     unitSystem: google.maps.UnitSystem.METRIC,
+      avoidHighways: false,
+      avoidTolls: false
+     };
+     
+    
+    directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setMap(map);
+            //directionsDisplay.setPanel($("#panel_ruta").get(0));
+            directionsDisplay.setDirections(response);
+            if(markers[0]!=undefined) {markers[0].setMap(null);}
 
-          var efectos = $("#ubicacion-contenedor").animate({backgroundColor:"#CDEB8B"},1000);
-         
-          $(".progreso1").switchClass('col-md-6','col-md-3',1000)
+            var efectos = $("#ubicacion-contenedor").animate({backgroundColor:"#CDEB8B"},1000);
+           
+            $(".progreso1").switchClass('col-md-6','col-md-3',1000)
 
-          $(".progreso1").animate({backgroundColor:"#CDEB8B"},1000);
-          $("#accesorios").animate({backgroundColor:"#C3D9FF"},1000);
+            $(".progreso1").animate({backgroundColor:"#CDEB8B"},1000);
+            $("#accesorios").animate({backgroundColor:"#C3D9FF"},1000);
 
-          setTimeout(function(){
-            /*$("#l2").click();
-            $(".progreso1").css("border-left","solid 0px");
-            $(".progreso2").css("border-left","solid 20px",1000);*/
-                      $(".progreso2").switchClass('col-md-3','col-md-6',1000)
-                                $(".progreso2").animate({backgroundColor:"#C3D9FF"},1000);
+            
+             
+            setTimeout(function(){
+              /*$("#l2").click();
+              $(".progreso1").css("border-left","solid 0px");
+              $(".progreso2").css("border-left","solid 20px",1000);*/
+              $(".progreso2").switchClass('col-md-3','col-md-6',1000)
+              $(".progreso2").animate({backgroundColor:"#C3D9FF"},1000);
+              document.getElementById("progreso1_estado").innerHTML ="Completado";
 
 
-          },1500);
-          
-      } else {
-              alert("No se encontro ninguna camino que llege a "+origen.formatted_address+" por favor seleccione una ubicacion mas cercana a una ruta o ciudad.");
-      }
-  });  
+            },1500);
+            
+        } else {
+                alert("No se encontro ninguna camino que llege a "+origen.formatted_address+" por favor seleccione una ubicacion mas cercana a una ruta o ciudad.");
+        }
+    }); 
+  } else  {
+    alert("No existe disponibilidad de casas.");
+  } 
+ 
 }
 
 function Dist(lat1, lon1, lat2, lon2)
@@ -205,9 +216,11 @@ function Dist(lat1, lon1, lat2, lon2)
       || $('[name=' + this.hash.slice(1) +']');
       if ($target.length) {
         var targetOffset = $target.offset().top;
-        if($target.selector=="#ubicacion-contenedor"){targetOffset=0;}
+        if($target.selector=="#ubicacion-contenedor"){targetOffset=0;}else{
+          targetOffset-=100;
+        }
         $('html,body')
-        .stop().animate({scrollTop: targetOffset}, 1300, 'easeInCirc');
+        .stop().animate({scrollTop: targetOffset}, 1300, 'easeOutCubic');
        return false;
       }
     }

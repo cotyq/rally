@@ -16,6 +16,7 @@
 
   <!-- Latest compiled and minified JavaScript -->  
   <script type="text/javascript"  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDwySW4YIvbeRHhfJVJQ1R0p4IPYqI6fC4&sensor=true">  </script>
+
       <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -36,13 +37,19 @@
   <script type="text/javascript" src="solicitar.js"></script>
   <script type="text/javascript" src="solicitarAngular.js"></script>
 
+
+   <!-- Fuentes -->
+   <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700,400' rel='stylesheet' type='text/css'>
+
+
     <style type="text/css">
       html, body, #map-canvas {
         height: 100%;
         margin: 0px;  
-        padding: 0px
+        padding: 0px;
+        
       }
-      .container{
+      . {
         height: 100%;
       }
       .mapa{
@@ -53,6 +60,7 @@
       .contenido{
         padding-top: 5em;
         height: 100%;
+        font-family: 'Roboto Slab', serif;
       }
 
       .ubicacion-contenedor{
@@ -61,45 +69,86 @@
         padding: 0em 7em 0em 7em;
         background-color: #C3D9FF;
 
-      }
+      } 
 
       .progreso1{
           background-color: #C3D9FF;
 
       }
-      .progreso2{
+      .progreso2 , .progreso3 {
           background-color: #EEEEEE;
-
       }
-      .progreso3{
-          background-color: #EEEEEE;
 
+      .progreso1:hover, .progreso2:hover, .progreso3:hover{
+        opacity: 0.9;
       }
       .navbar-fixed-top{
         border: 0;
       }
 
-      .accesorios{
-  height: 100%;
-  width: 100%;
-  padding-top:10em;
-  background-color: #EEEEEE;
-
+.accesorios{
+  padding-top:5em;
+  padding-bottom: 2em;
 }
 
+.accesorios_botoner{
+  text-align: right;
+  padding:1em;
+}
+
+.verificacion, .accesorios{
+  width: 100%;
+
+  background-color: #EEEEEE;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
 .verificacion{
   height: 100%;
-  width: 100%;
-  background-color: #EEEEEE;
 }
+
 
 
 .progresos div {
   cursor: pointer;
 }
-    </style>
-<style type="text/css">
-  .ui-dialog
+
+#accesorios_tabla{
+  height: 90%;
+  padding: 0em 3em 0 3em;
+  background-color: white;
+  padding-bottom: 2em;
+}
+
+.accesorios_titulo{
+  padding: 1em;
+  background-color: #81BCCF;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  top: -1em;
+}
+
+.accesorio_cantidad{
+  text-align: center;
+}
+
+.accesorio_titulo{
+  padding: 1em;
+  font-weight: bold;
+}
+.accesorios_items{
+  padding: 1em;
+  border-bottom: groove;
+}
+
+.accesorios_items:hover{
+  background-color: #A2D1E0;
+}
+
+
+
+.ui-dialog
 {
 background: #EEEEEE;
 padding: 1em;
@@ -133,6 +182,10 @@ background-color: #EEEEEE;
     text-align: center;
 }
 
+
+.control-label{
+  margin-top: 1em;
+}
 </style>
 
 
@@ -186,17 +239,17 @@ background-color: #EEEEEE;
         <div class="progresos">
           <div class="progreso1 col-md-6" onclick="$('#l1').click()">
               <h4><center><strong><a id="l1" href="#ubicacion-contenedor">PASO 1 : Seleccionar ubicacion</a> </strong></center></h4>
-              <br>
-                      </div>
-        <div class="progreso2 col-md-3" onclick="$('#l2').click()">
-              <h4><center><strong><a id="l2" href="#accesorios">PASO 2 : Seleccion de Accesorios</a> </strong></center></h4>
-              <br>
-        </div>
-        <div class="progreso3 col-md-3" onclick="$('#l3').click()">
-              <h4><center><strong><a id="l3" href="#verificacion">PASO 3 : Verificacion y validacion</a> </strong></center></h4>
-              <br>
-              
-        </div>
+              <center><h4><div id="progreso1_estado"> <br></div></h4></center>
+          </div>
+          <div class="progreso2 col-md-3" onclick="$('#l2').click()">
+                <h4><center><strong><a id="l2" href="#accesorios">PASO 2 : Seleccion de Accesorios</a> </strong></center></h4>
+                <center><h4><div id="progreso2_estado"> <br></div></h4></center>
+          </div>
+          <div class="progreso3 col-md-3" onclick="$('#l3').click()">
+                <h4><center><strong><a id="l3" href="#verificacion">PASO 3 : Verificacion y validacion</a> </strong></center></h4>
+                <center><h4><div id="progreso3_estado"> <br></div></h4></center>
+                
+          </div>
       </div>
     </nav>   
         <section class="contenido">
@@ -238,30 +291,32 @@ background-color: #EEEEEE;
                         <div id="panel_ruta"></div>
             </div>
           </div>
-  
-      </section>
-      
-        <div class="accesorios" id="accesorios">
-          <div class="col-md-6">
-            <div ui-sortable="sortableOptionsList[0]" ng-model="items" class="apps-container screen floatleft">
-            <div ng-repeat="item in items">
-                {{ item }}
-              </div>
-            </div>
-          </div>
+          <div class="accesorios container" id="accesorios">
+            <div id="accesorios_tabla"  class="col-md-8 col-md-offset-2" >
+            <div class="accesorios_titulo">Accesorios/Partes</div>
 
-          <div class="col-md-6">
-            <div ui-sortable="sortableOptionsList[1]" ng-model="items2" class="apps-container screen floatleft">
-            <div ng-repeat="item in items2">
-                {{ item }}
+            <div  class="accesorios_items" ng-repeat="accesorio in accesorios">
+              <div class="row">
+                <div class="col-md-2"><img ng-src="img/{{accesorio.imagen}}" class="img-thumbnail" height="110"> </div>
+                <div class="col-md-10">
+                  <div class="accesorio_titulo">{{ accesorio.nombre}}</div>
+                  <div class="col-md-9">{{ accesorio.descripcion}}</div>
+                  <div class="col-md-3 accesorio_cantidad"><p>Cantidad</p> <p><input type="number" class="form-control"   value="0" required></p></div>
+                </div>
               </div>
             </div>
+            <div class="accesorios_botoner">
+                <button ng-click="validar"  class="btn btn-primary"  >Completar</button>
+            </div>
           </div>
-            
         </div>
+
         <div class="verificacion" id="verificacion">
 
         </div>
+      </section>
+      
+
 
   </body>
   <div id="dialog" title="Datos incorrectos">
