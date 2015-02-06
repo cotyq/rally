@@ -31,8 +31,14 @@ function marcarLineas(){
     }
   }
 function buscarCaminos(){
+
     var ubicacion = document.getElementById('ubicacion').value;
-    if(markers[0]!=undefined){
+    console.log($("#cantidad").val())
+    
+    if($("#cantidad").val()=="" || $("#cantidad").val()<1){
+
+    }
+    else if(markers[0]!=undefined){
 
        obtenerNombre(markers[0].position.k,markers[0].position.D)
 
@@ -56,6 +62,7 @@ function obtenerNombre(lat,lng){
         //si el estado de la llamado es OK
         if (status == google.maps.GeocoderStatus.OK) {
             obtenerCamino(results[0]);
+            document.getElementById('ubicacion').value =results[0].formatted_address;
            
       } else {
           //si no es OK devuelvo error
@@ -122,12 +129,21 @@ function obtenerCamino(origen){
           if(markers[0]!=undefined) {markers[0].setMap(null);}
 
           var efectos = $("#ubicacion-contenedor").animate({backgroundColor:"#CDEB8B"},1000);
+         
+          $(".progreso1").switchClass('col-md-6','col-md-3',1000)
+
           $(".progreso1").animate({backgroundColor:"#CDEB8B"},1000);
-          $(".progreso2").animate({backgroundColor:"#C3D9FF"},1000);
           $("#accesorios").animate({backgroundColor:"#C3D9FF"},1000);
+
           setTimeout(function(){
-            $("#l2").click();
-          },2200);
+            /*$("#l2").click();
+            $(".progreso1").css("border-left","solid 0px");
+            $(".progreso2").css("border-left","solid 20px",1000);*/
+                      $(".progreso2").switchClass('col-md-3','col-md-6',1000)
+                                $(".progreso2").animate({backgroundColor:"#C3D9FF"},1000);
+
+
+          },1500);
           
       } else {
               alert("No se encontro ninguna camino que llege a "+origen.formatted_address+" por favor seleccione una ubicacion mas cercana a una ruta o ciudad.");
@@ -199,3 +215,21 @@ function Dist(lat1, lon1, lat2, lon2)
 
   
 });
+
+  $(function() { //shorthand document.ready function
+    $('#form_ubicacion').on('submit', function(e) { //use on if jQuery 1.7+
+        e.preventDefault();  //prevent form from submitting
+        console.log($("#cantidad").val())
+        if($("#cantidad").val()!=""){
+          buscarCaminos();  
+        }
+        
+    });
+    $('#ubicacion').on('input',function(e){
+          setAllMap(null);
+
+      markers=[];
+      });
+});
+
+

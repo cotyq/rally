@@ -4,6 +4,46 @@
 		"selected_items":
 		[
 			[
+				"pad",
+				"padding-top"
+			],
+			[
+				"controller",
+				"controller	Angular.js"
+			],
+			[
+				"progr",
+				"progresos"
+			],
+			[
+				"val",
+				"value	AngularJS"
+			],
+			[
+				"bor",
+				"border-left"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"pro",
+				"progreso1"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"ini",
+				"inline-block"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
 				"if",
 				"if	if"
 			],
@@ -22,14 +62,6 @@
 			[
 				"nav",
 				"navbar"
-			],
-			[
-				"pad",
-				"padding-top"
-			],
-			[
-				"controller",
-				"angular: $controller"
 			],
 			[
 				"lee",
@@ -103,7 +135,39 @@
 			"file": "home.html",
 			"settings":
 			{
-				"buffer_size": 4626,
+				"buffer_size": 4565,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "solicitar.js",
+			"settings":
+			{
+				"buffer_size": 7183,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "map.js",
+			"settings":
+			{
+				"buffer_size": 1592,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "solicitar.html",
+			"settings":
+			{
+				"buffer_size": 8704,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "solicitarAngular.js",
+			"settings":
+			{
+				"buffer_size": 1703,
 				"line_ending": "Windows"
 			}
 		}
@@ -136,6 +200,9 @@
 	},
 	"file_history":
 	[
+		"/C/Users/marcos/Desktop/rally-git/.git/config",
+		"/C/Program Files (x86)/Git/etc/gitconfig",
+		"/C/Users/marcos/Desktop/rally/home.html",
 		"/C/Users/marcos/Desktop/anguar-rally/app/home/home.js",
 		"/C/Users/marcos/Desktop/anguar-rally/app/home/home.html",
 		"/C/Users/marcos/Desktop/anguar-rally/app/inicio/inicio.js",
@@ -149,7 +216,6 @@
 		"/C/Users/marcos/Desktop/anguar-rally/app/inicio/inicio_test.js",
 		"/C/Users/marcos/Desktop/rally/map.js",
 		"/C/Users/marcos/Desktop/rally/solicitar.html",
-		"/C/Users/marcos/Desktop/rally/home.html",
 		"/C/Users/marcos/Desktop/web/app/index.html",
 		"/C/Users/marcos/Desktop/web2.0/app/index.html",
 		"/C/Users/marcos/Desktop/rally/nueva.html",
@@ -191,6 +257,21 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			".map",
+			"js.map",
+			".acces",
+			"angular",
+			"submit",
+			"function",
+			"ubicacion",
+			"click",
+			"h3",
+			"navbar",
+			"progreso",
+			"h2",
+			"ubiacion",
+			"posicion",
+			"home",
 			"$rootScope",
 			"23",
 			"style",
@@ -303,21 +384,7 @@
 			"direccionbase",
 			"getConfiguracion",
 			"self.radioBase.getConfiguracion",
-			"direccion",
-			"direccionbase",
-			"self.direccion",
-			"direccionbase",
-			"direccion",
-			"direccionbase",
-			"directorio",
-			"tipo_radio",
-			"joinradio",
-			"tipo_radio",
-			"getconfi",
-			"joinradio",
-			"self.direccion",
-			"getconf",
-			"fullpath"
+			"direccion"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -325,6 +392,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"h4",
+			"h3",
 			"configuracionLogger",
 			"logging.error",
 			"dnt900.getConfiguracion"
@@ -338,7 +407,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -346,15 +415,15 @@
 					"file": "home.html",
 					"settings":
 					{
-						"buffer_size": 4626,
+						"buffer_size": 4565,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2466,
-								2466
+								2554,
+								2554
 							]
 						],
 						"settings":
@@ -364,7 +433,120 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 630.0,
+						"translation.y": 992.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "solicitar.js",
+					"settings":
+					{
+						"buffer_size": 7183,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6605,
+								6605
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2644.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "map.js",
+					"settings":
+					{
+						"buffer_size": 1592,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1436,
+								1436
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 326.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "solicitar.html",
+					"settings":
+					{
+						"buffer_size": 8704,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7996,
+								7996
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3336.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "solicitarAngular.js",
+					"settings":
+					{
+						"buffer_size": 1703,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								306,
+								306
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

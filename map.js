@@ -46,11 +46,7 @@ function initialize() {
     markers.push(marker);
   });
 
-  function setAllMap(map) {
-    for (var i = 0; i < markers.length; i++) {
-      markers[i].setMap(map);
-    }
-  }
+
 
   function setAllMapLineas(map) {
     if(polylineas!=undefined)
@@ -58,4 +54,9 @@ function initialize() {
   }
 }
 
+  function setAllMap(map) {
+    for (var i = 0; i < markers.length; i++) {
+      markers[i].setMap(map);
+    }
+  }
 
