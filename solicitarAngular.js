@@ -284,6 +284,12 @@ function Dist(lat1, lon1, lat2, lon2)
 
       markers=[];
       });
+
+    $(window).scroll(function(){
+      if($('.accesorios').offset().top > $(window).scrollTop()){
+        $('#accesorios_tabla').addClass('animated fadeInUp');
+      }
+    });
 });
 }])
 
