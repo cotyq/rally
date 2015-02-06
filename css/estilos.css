@@ -1,0 +1,178 @@
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;  
+        padding: 0px;
+        
+      }
+      . {
+        height: 100%;
+      }
+      .mapa{
+        height: 70%;
+      }
+      #map_canvas { height: 100% }
+
+      .contenido{
+        padding-top: 5em;
+        height: 100%;
+        font-family: 'Roboto Slab', serif;
+      }
+
+      #buscar{
+        margin-top: 1em;
+      }
+      .ubicacion-contenedor{
+        height: 100%;
+        position: static;
+
+        padding: 0em 7em 0em 7em;
+        background-color: #C3D9FF;
+
+      } 
+      .ubicacion_titulo{
+
+        text-align: center;
+        padding: 0.5em;
+        margin: 2em;
+        background-color: #81BCCF;
+      }
+      .progreso1{
+          background-color: #C3D9FF;
+
+      }
+      .progreso2 , .progreso3 {
+          background-color: #EEEEEE;
+      }
+
+      .progreso1:hover, .progreso2:hover, .progreso3:hover{
+        opacity: 0.9;
+      }
+      .navbar-fixed-top{
+        border: 0;
+      }
+
+.accesorios{
+  padding-bottom: 10em;
+
+}
+
+.accesorios_botoner{
+  text-align: right;
+  padding:1em;
+}
+
+.verificacion, .accesorios{
+  width: 100%;
+  padding-top:11em;
+
+  background-color: #EEEEEE;
+ box-shadow: 0 0 6px rgba(0,0,0,.4);
+}
+.verificacion{
+  height: 100%;
+}
+
+
+
+.progresos div {
+  cursor: pointer;
+}
+
+#accesorios_tabla{
+  height: 90%;
+  padding: 0em 2em 0 2em;
+  background-color: white;
+  padding-bottom: 2em;
+}
+
+.accesorios_titulo{
+  padding: 1em;
+  background-color: #81BCCF;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  top: -1em;
+}
+
+.accesorio_cantidad{
+  text-align: center;
+}
+
+.accesorio_titulo{
+  padding: 1em;
+  font-weight: bold;
+}
+.accesorios_items{
+  padding: 1em;
+  border-bottom: groove;
+}
+
+.accesorios_items:nth-child(2n+0){
+  background-color: #DAD6CC;
+}
+.accesorios_items:hover{
+  background-color: #A2D1E0;
+}
+
+.accesorios_items:hover .accesorios_imagen{
+  -webkit-transform: rotate(60deg);
+ -moz-transform: rotate(60deg);
+ transform: rotate(60deg);
+} 
+
+.ui-dialog
+{
+background: #EEEEEE;
+padding: 1em;
+}
+
+.ui-dialog .ui-widget-header
+{
+background: #222;
+text-align: center;
+padding: 1px;
+border-radius: 0.3em;
+}
+
+.ui-dialog .ui-dialog-titlebar
+{
+color: white;
+font-family: arial;
+text-align: center;
+}
+
+.ui-dialog .ui-widget-content{
+padding: 0.2em;
+color: black;
+background-color: #EEEEEE;
+
+}
+
+
+.ui-dialog .ui-dialog-title {
+    float: none;
+    text-align: center;
+}
+
+
+.control-label{
+  margin-top: 1em;
+}
+
+
+.flecha{
+  position: absolute;
+  bottom: 15%;
+  right: 30%;
+  background-size: 40;
+  height: 20%;
+
+  background-image: url("http://pixabay.com/static/uploads/photo/2012/04/05/01/58/arrow-25864_640.png");
+
+    -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}

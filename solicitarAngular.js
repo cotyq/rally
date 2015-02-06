@@ -33,7 +33,9 @@ angular.module('solicitarApp', []).controller('solicitarCtrl', ['$scope', functi
 
 
 	    },1500);
-  	}
+  	}  else  {
+      alert("Debes indicar primero la ubicacion de tus casas.")
+    }
     
   }
 
@@ -256,7 +258,7 @@ function Dist(lat1, lon1, lat2, lon2)
       if ($target.length) {
         var targetOffset = $target.offset().top;
         if($target.selector=="#ubicacion-contenedor"){targetOffset=0;}else{
-          targetOffset-=100;
+          //  targetOffset-=100;
         }
         $('html,body')
         .stop().animate({scrollTop: targetOffset}, 1300, 'easeOutCubic');

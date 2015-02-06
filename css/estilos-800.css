@@ -1,0 +1,48 @@
+.ubicacion-contenedor{
+        padding: 0em;
+  }
+
+
+  .accesorio_descripcion , .accesorios_imagen , .ubicacion_titulo, #map_canvas,.accesorios_titulo, .progresos{
+    display: none;
+  }
+
+h4{
+	font-size: 12px;
+}
+
+h3{
+font-size: 10px;
+}
+.contenido ,.ubicacion-contenedor, .verificacion, .accesorios{
+padding-top: 0em;
+
+}
+
+.verificacion, .accesorios{
+  padding-top: 1em;
+}
+
+.contenido , .accesorios_items{
+	padding: 0px;
+  padding-bottom: 1em;
+}
+
+.control-label{
+  margin-top: 0em;
+}
+
+.ubicacion-contenedor{
+    
+  }
+
+  #form_ubicacion .control-label {
+    display: none;
+  }
+  .mapa {
+height: 30%;
+}
+
+#accesorios_tabla {
+ padding: 0em 0em 0em 0em;
+}
