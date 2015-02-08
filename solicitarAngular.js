@@ -6,9 +6,9 @@
 angular.module('solicitarApp', []).controller('solicitarCtrl', ['$scope', function ($scope) {
 	$scope.accesorios = [{nombre:"Panel Solar" , descripcion:"Un panel solar (o módulo solar) es un dispositivo que aprovecha la energía de la radiación solar. El término comprende a los colectores solares utilizados para producir agua caliente (usualmente doméstica) mediante energía solar térmica y a los paneles fotovoltaicos utilizados para generar electricidad mediante energía solar fotovoltaica.",imagen:"panel_solar.png",cantidad:0},
   {nombre:"Ventilador eolico" , descripcion:"La explotación de una turbina de 1 MW instalada en un parque eólico puede llegar a evitar 2000 toneladas de dióxido de carbono (CO2), si la electricidad producida ha sido emitida por centrales termoeléctricas.",cantidad:0,imagen:"ventilador.png"},
-  {nombre:"Panel Solar" , descripcion:"Un panel solar (o módulo solar) es un dispositivo que aprovecha la energía de la radiación solar. El término comprende a los colectores solares utilizados para producir agua caliente (usualmente doméstica) mediante energía solar térmica y a los paneles fotovoltaicos utilizados para generar electricidad mediante energía solar fotovoltaica.",imagen:"panel_solar.png",cantidad:0},{nombre:"Panel Solar" , descripcion:"Un panel solar (o módulo solar) es un dispositivo que aprovecha la energía de la radiación solar. El término comprende a los colectores solares utilizados para producir agua caliente (usualmente doméstica) mediante energía solar térmica y a los paneles fotovoltaicos utilizados para generar electricidad mediante energía solar fotovoltaica.",imagen:"panel_solar.png",cantidad:0},
-  {nombre:"Ventilador eolico" , descripcion:"La explotación de una turbina de 1 MW instalada en un parque eólico puede llegar a evitar 2000 toneladas de dióxido de carbono (CO2), si la electricidad producida ha sido emitida por centrales termoeléctricas.",cantidad:0,imagen:"ventilador.png"},
-  {nombre:"Panel Solar" , descripcion:"Un panel solar (o módulo solar) es un dispositivo que aprovecha la energía de la radiación solar. El término comprende a los colectores solares utilizados para producir agua caliente (usualmente doméstica) mediante energía solar térmica y a los paneles fotovoltaicos utilizados para generar electricidad mediante energía solar fotovoltaica.",imagen:"panel_solar.png",cantidad:0}];
+  {nombre:"Termotanque" , descripcion:"Dispositivo eléctrico o de gas empleado para calentar el agua corriente para su uso doméstico. Algunos son capaces de producir esta calefacción bajo demanda, mientras que otros almacenan una determinada cantidad de agua precalentada.",imagen:"termotanque.jpg",cantidad:0},
+  {nombre:"Aislamiento térmico: Lana de vidrio" , descripcion:"La lana de vidrio es una fibra mineral fabricada con millones de filamentos de vidrio unidos con un aglutinante. El espacio libre con aire atrapado entre las fibras aumentan la resistencia a la transmisión de calor.",imagen:"lana.jpg",cantidad:0},
+  {nombre:"Aislante termico: Lana de roca" , descripcion:"La lana de roca, perteneciente a la familia de las lanas minerales, es un material fabricado a partir de la roca volcánica. Se utiliza principalmente como aislamiento térmico y como protección pasiva contra el fuego en la edificación, debido a su estructura fibrosa multidireccional, que le permite albergar aire relativamente inmóvil en su interior.",cantidad:0,imagen:"lanaroca.jpg"}];
 
 
   $scope.validarAccesorios = function(){
@@ -286,7 +286,7 @@ function Dist(lat1, lon1, lat2, lon2)
       });
 
     $(window).scroll(function(){
-      if($('.accesorios').offset().top > $(window).scrollTop()){
+      if($('.accesorios').offset().top > $(window).scrollTop()+200){
         $('#accesorios_tabla').addClass('animated fadeInUp');
       }
     });

@@ -63,6 +63,7 @@
 
 .verificacion, .accesorios{
   width: 100%;
+  min-height: 120%;
   padding-top:11em;
 
   background-color: #EEEEEE;

@@ -115,7 +115,7 @@
 
     <!--------------------------------              Ubicacion                         --------------------------     -->
 
-        <section class="contenido animated fadeInUp">
+        <section class="contenido">
           <div  class="ubicacion-contenedor" id="ubicacion-contenedor">
                       <div class="ubicacion_titulo"><h3>Seleccione un punto en el mapa o ingrese el nombre de una ciudad cercana</h3>  
 </div>
@@ -127,7 +127,7 @@
                 <div class="form-group">
                   <label for="ubicacio" class="col-sm-8 control-label">Escriba una localizacion</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="ubicacion" pattern="\w+\s*,\s*\w+" placeholder="Lugar: Santa fe, Argentina">
+                    <input type="text" class="form-control" id="ubicacion" placeholder="Santa fe, Argentina">
                   </div>
                 </div>
                 <div class="form-group">
@@ -162,8 +162,12 @@
           <div class="accesorios container" id="accesorios">
             <div id="accesorios_tabla"  class="col-md-8 col-md-offset-2" >
             <div class="accesorios_titulo">Accesorios/Partes</div>
+            <div class="form-group">
+              <input type="text" class="form-control col-md-4" id="ubicacion" ng-model="filtroNombre" ng-init="filtroNombre=''" placeholder="Filtrar por nombre">
+              <br>
+            </div>
             <form id="form_accesorios" ng-submit="validarAccesorios()" >
-              <div  class="accesorios_items"  ng-repeat="accesorio in accesorios">
+              <div  class="accesorios_items"  ng-repeat="accesorio in accesorios| filter:{nombre:filtroNombre}" >
                 <div class="row" >
                   <div class="col-md-2"><img ng-src="img/{{accesorio.imagen}}" class="img-thumbnail accesorios_imagen" height="110"> </div>
                   <div class="col-md-10">
