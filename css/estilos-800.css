@@ -46,3 +46,7 @@ height: 30%;
 #accesorios_tabla {
  padding: 0em 0em 0em 0em;
 }
+
+.infolocalizacion , .infomapa , .arrow-before{
+  display: none;
+}

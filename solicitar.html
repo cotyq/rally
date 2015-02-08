@@ -3,209 +3,217 @@
 <head>
 
   <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-   <title>gmaps.js &mdash; the easiest way to use Google Maps</title>
-    <!-- Bootstrap core CSS -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>gmaps.js &mdash; the easiest way to use Google Maps</title>
+  <!-- Bootstrap core CSS -->
 
-    <!-- Custom styles for this template -->
-    <link href="bootstrap/css/jumbotron.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="bootstrap/css/jumbotron.css" rel="stylesheet">
 
 
   <!-- Latest compiled and minified JavaScript -->  
   <script type="text/javascript"  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDwySW4YIvbeRHhfJVJQ1R0p4IPYqI6fC4&sensor=true">  </script>
 
       <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!-- Including  jQuery Dialog UI Here-->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <!-- Including  jQuery Dialog UI Here-->
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
-<script src="jquery-ui/jquery-ui.js"></script>
-    <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
+      <script src="jquery-ui/jquery-ui.js"></script>
+      <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
 
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <script type="text/javascript" src="map.js"></script>
-  <script type="text/javascript" src="solicitar.js"></script>
-  <script type="text/javascript" src="solicitarAngular.js"></script>
+      <script src="bootstrap/js/bootstrap.min.js"></script>
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <script type="text/javascript" src="map.js"></script>
+      <script type="text/javascript" src="solicitar.js"></script>
+      <script type="text/javascript" src="solicitarAngular.js"></script>
 
 
-   <!-- Fuentes -->
-   <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700,400' rel='stylesheet' type='text/css'>
-   <link rel="stylesheet" type="text/css" href="css/estilos.css">
-   <link rel="stylesheet" media="(max-width: 800px)" href="css/estilos-800.css">
-   <link rel="stylesheet" href="css/animate.css">
+      <!-- Fuentes -->
+      <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700,400' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" type="text/css" href="css/estilos.css">
+      <link rel="stylesheet" media="(max-width: 800px)" href="css/estilos-800.css">
+      <link rel="stylesheet" href="css/animate.css">
 
-</head>
-<body onload="initialize()" ng-app="solicitarApp" ng-controller="solicitarCtrl">
+    </head>
+    <body onload="initialize()" ng-app="solicitarApp" ng-controller="solicitarCtrl">
 
       <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header" id="arriva">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Soluciones Golondrina</a>
+        <div class="container">
+          <div class="navbar-header" id="arriva">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Soluciones Golondrina</a>
+          </div>
+          <div class="navbar-collapse collapse navbar-inverse-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="home.html">Inicio</a></li>
+              <li class="active" class="dropdown">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown">Gestionar Casas Usuario<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li ><a href="solicitar.html">Solicitar</a></li>
+                  <li><a href="#">Estado Actual</a></li>
+                  <li class="divider"></li>
+                  <li class="dropdown-header">Informes</li>
+                  <li><a href="#">Reparación</a></li>
+                  <li><a href="#">Contacto</a></li>
+                  <li><a href="#">Devoluciones</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown">Gestionar Casas Administrador<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-header">Gestionar Casas</li>
+                  <li><a href="nueva.html">Crear</a></li>
+                  <li><a href="#/GCasas">Listado</a></li>
+                  <li class="dropdown-header">Gestionar Partes</li>
+                  <li><a href="#/GCasas">Crear</a></li>
+                  <li><a href="#/GCasas">Listado</a></li>
+                  <li class="divider"></li>
+                  <li class="dropdown-header">Informes</li>
+                  <li><a href="#">Solicitudes</a></li>
+                  <li><a href="#">Devoluciones</a></li>
+                </ul>
+              </li>
+              <li><a href="index.html">Cerrar sesión</a></li>
+            </ul>
+          </div>
         </div>
-        <div class="navbar-collapse collapse navbar-inverse-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="home.html">Inicio</a></li>
-            <li class="active" class="dropdown">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown">Gestionar Casas Usuario<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li ><a href="solicitar.html">Solicitar</a></li>
-                <li><a href="#">Estado Actual</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Informes</li>
-                <li><a href="#">Reparacion</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li><a href="#">Devoluciones</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown">Gestionar Casas Administrador<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li class="dropdown-header">Gestionar Casas</li>
-                <li><a href="nueva.html">Crear</a></li>
-                <li><a href="#/GCasas">Listado</a></li>
-                 <li class="dropdown-header">Gestionar Partes</li>
-                <li><a href="#/GCasas">Crear</a></li>
-                <li><a href="#/GCasas">Listado</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Informes</li>
-                <li><a href="#">Solicitudes</a></li>
-                <li><a href="#">Devoluciones</a></li>
-              </ul>
-            </li>
-            <li><a href="index.html">Cerrar sesión</a></li>
-          </ul>
-        </div>
-      </div>
 
 
-      <!--------------------------------              Progresos                         --------------------------     -->
+        <!--------------------------------              Progresos                         --------------------------     -->
 
         <div class="progresos">
           <div class="progreso1 col-md-6" onclick="$('#l1').click()">
-              <h4><center><strong><a id="l1" href="#ubicacion-contenedor">PASO 1 : Seleccionar ubicacion</a> </strong></center></h4>
-              <center><h4><div id="progreso1_estado"> <br></div></h4></center>
+            <h4><center><strong><a id="l1" href="#ubicacion-contenedor">PASO 1 : Seleccionar ubicación</a> </strong></center></h4>
+            <center><h4><div id="progreso1_estado"> <br></div></h4></center>
           </div>
           <div class="progreso2 col-md-3" onclick="$('#l2').click()">
-                <h4><center><strong><a id="l2" href="#accesorios">PASO 2 : Seleccion de Accesorios</a> </strong></center></h4>
-                <center><h4><div id="progreso2_estado"> <br></div></h4></center>
+            <h4><center><strong><a id="l2" href="#accesorios">PASO 2 : Selección de Accesorios</a> </strong></center></h4>
+            <center><h4><div id="progreso2_estado"> <br></div></h4></center>
           </div>
           <div class="progreso3 col-md-3" onclick="$('#l3').click()">
-                <h4><center><strong><a id="l3" href="#verificacion">PASO 3 : Verificacion y validacion</a> </strong></center></h4>
-                <center><h4><div id="progreso3_estado"> <br></div></h4></center>
+            <h4><center><strong><a id="l3" href="#verificacion">PASO 3 : Verificación y validación</a> </strong></center></h4>
+            <center><h4><div id="progreso3_estado"> <br></div></h4></center>
           </div>
-      </div>
-    </nav>   
+        </div>
+      </nav>   
 
 
 
+      <div class="checkTutorial"> Ver Tutorial <input type="checkbox" ng-model="checkedTutorial"></div>
 
-    <!--------------------------------              Ubicacion                         --------------------------     -->
 
-        <section class="contenido">
-          <div  class="ubicacion-contenedor" id="ubicacion-contenedor">
-                      <div class="ubicacion_titulo"><h3>Seleccione un punto en el mapa o ingrese el nombre de una ciudad cercana</h3>  
-</div>
-            <div class="mapa col-md-6">
-              <div id="map_canvas" style="width:100%; height:100%"></div>
-            </div>
-              <div class="col-md-6">
-              <form method="post" id="form_ubicacion">  
-                <div class="form-group">
-                  <label for="ubicacio" class="col-sm-8 control-label">Escriba una localizacion</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="ubicacion" placeholder="Santa fe, Argentina">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="cantidad" class="col-sm-8 control-label">Cantidad</label>
-                  <div class="col-sm-9">
-                    <input  type="number" class="form-control" id="cantidad" pattern="[0-9]*" placeholder="Cantidad" min="1" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="desde" class="col-sm-8 control-label">Desde</label>
-                  <div class="col-sm-9">
-                    <input  type="date" class="form-control" id="desde" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="hasta" class="col-sm-8 control-label">Hasta</label>
-                  <div class="col-sm-9">
-                    <input  type="date" class="form-control" id="hasta" required>
-                  </div>
-                </div>
-                <div class="form-group">  
-                  <div class="col-sm-10" style="text-align:center"> 
-                      <button id="buscar" ng-click="buscarCaminos()" type="submit" class="btn btn-success">Buscar casas</button>
-                  </div>
-                </div>
-              </form>
-            </div>
+      <!--------------------------------              Ubicacion                         --------------------------     -->
+
+      <section class="contenido">
+
+        <div  class="ubicacion-contenedor" id="ubicacion-contenedor">
+         <div class="ubicacion_titulo"><h3>Seleccione un punto en el mapa o ingrese el nombre de una ciudad cercana</h3>  
+         </div>
+         
+         <div class="mapa col-md-6">
+          <div id="map_canvas" style="width:100%; height:100%"></div>
+          <div class="infomapa" ng-show="checkedTutorial">Puede realizar un clic para especificar una posición...<div class="arrow-infomapa"></div></div>
+        </div>
+        <div class="col-md-6 ubicacion-formulario">
+          <div class="infolocalizacion" ng-show="checkedTutorial">...O simplemente escribir un destinto esta caja de texto
+                      <div class="arrow-infolocalicacion"></div>
           </div>
-
-          <!--------------------------------              Accesorios                         --------------------------     -->
-
-          <div class="accesorios container" id="accesorios">
-            <div id="accesorios_tabla"  class="col-md-8 col-md-offset-2" >
-            <div class="accesorios_titulo">Accesorios/Partes</div>
+          <form method="post" id="form_ubicacion">  
             <div class="form-group">
-              <input type="text" class="form-control col-md-4" id="ubicacion" ng-model="filtroNombre" ng-init="filtroNombre=''" placeholder="Filtrar por nombre">
-              <br>
+              <label for="ubicacio" class="col-sm-8 control-label">Escriba una localización</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="ubicacion" placeholder="Santa fe, Argentina">
+              </div>
             </div>
-            <form id="form_accesorios" ng-submit="validarAccesorios()" >
-              <div  class="accesorios_items"  ng-repeat="accesorio in accesorios| filter:{nombre:filtroNombre}" >
-                <div class="row" >
-                  <div class="col-md-2"><img ng-src="img/{{accesorio.imagen}}" class="img-thumbnail accesorios_imagen" height="110"> </div>
-                  <div class="col-md-10">
-                    <div class="accesorio_titulo">{{ accesorio.nombre}}</div>
-                    <div class="col-md-9 accesorio_descripcion" >{{ accesorio.descripcion}}</div>
-                    <div class="col-md-3 accesorio_cantidad">
-                      <label for="hasta" class="col-xs-4 col-sm-8 control-label">Cantidad</label>
-                      <div class="col-xs-8 col-sm-9">
-                        <input ng-model="accesorio.cantidad" min="0" type="number" pattern="[0-9]*" class="form-control"   ng-disabled="completado" required>
-                      </div> 
-                    </div>
+            <div class="form-group">
+              <label for="cantidad" class="col-sm-8 control-label">Cantidad</label>
+              <div class="col-sm-9">
+                <input  type="number" class="form-control" id="cantidad" pattern="[0-9]*" placeholder="Cantidad" min="1" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="desde" class="col-sm-8 control-label">Desde</label>
+              <div class="col-sm-9">
+                <input  type="date" class="form-control" id="desde" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="hasta" class="col-sm-8 control-label">Hasta</label>
+              <div class="col-sm-9">
+                <input  type="date" class="form-control" id="hasta" required>
+              </div>
+            </div>
+            <div class="form-group">  
+              <div class="col-sm-10" style="text-align:center"> 
+                <button id="buscar" ng-click="buscarCaminos()" type="submit" class="btn btn-success">Buscar casas</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!--------------------------------              Accesorios                         --------------------------     -->
+
+      <div class="accesorios container" id="accesorios">
+        <div id="accesorios_tabla"  class="col-md-8 col-md-offset-2" >
+          <div class="accesorios_titulo">Accesorios/Partes</div>
+          <div class="form-group">
+            <input type="text" class="form-control col-md-4" id="filtroNombre" ng-model="filtroNombre" ng-init="filtroNombre=''" placeholder="Filtrar por nombre">
+            <br>
+          </div>
+          <form id="form_accesorios" ng-submit="validarAccesorios()" >
+            <div  class="accesorios_items"  ng-repeat="accesorio in accesorios| filter:{nombre:filtroNombre}" >
+              <div class="row" >
+                <div class="col-md-2"><img ng-src="img/{{accesorio.imagen}}" class="img-thumbnail accesorios_imagen" height="110"> </div>
+                <div class="col-md-10">
+                  <div class="accesorio_titulo">{{ accesorio.nombre}}</div>
+                  <div class="col-md-9 accesorio_descripcion" >{{ accesorio.descripcion}}</div>
+                  <div class="col-md-3 accesorio_cantidad">
+                    <label for="hasta" class="col-xs-4 col-sm-8 control-label">Cantidad</label>
+                    <div class="col-xs-8 col-sm-9">
+                      <input ng-model="accesorio.cantidad" min="0" type="number" pattern="[0-9]*" class="form-control"   ng-disabled="completado" required>
+                    </div> 
                   </div>
                 </div>
               </div>
-              <div class="accesorios_botoner">
-                  <button type="submit"   class="btn btn-primary" >Completar</button>
-              </div>
-            </form>
-          </div>
+            </div>
+            <div class="accesorios_botoner">
+              <button type="submit"   class="btn btn-primary" >Completar</button>
+            </div>
+          </form>
         </div>
+      </div>
 
 
-        <!--------------------------------              Verificacion                         --------------------------     -->
+      <!--------------------------------              Verificación                         --------------------------     -->
 
-        <div class="verificacion" id="verificacion">
+      <div class="verificacion" id="verificacion">
 
-        </div>
-      </section>
-      
+      </div>
+    </section>
+
 
 
   </body>
   <div id="dialog" title="Datos incorrectos">
-  <span class="ui-icon  ui-icon-closethick"></span>   
-<p>Debe seleccionar una posicion en el mapa o escribir una ubicacion.</p>
-</div>
+    <span class="ui-icon  ui-icon-closethick"></span>   
+    <p>Debe seleccionar una posición en el mapa o escribir una ubicación.</p>
+  </div>
 
 
 
-</html>
+  </html>
 
