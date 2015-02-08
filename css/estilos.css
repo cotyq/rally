@@ -97,9 +97,10 @@
       }
 
       .checkTutorial{
-        position: absolute;
-        bottom: 5%;
-        right: 5%;
+        position:absolute;
+        top: 26%;
+        right: 45%;
+
       }
 
 
