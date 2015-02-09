@@ -15,15 +15,15 @@ angular.module('solicitarApp', []).controller('solicitarCtrl', ['$scope', functi
   	if($scope.progreso==2){
   		$scope.completado=true;
   		$("#accesorios").animate({backgroundColor:"#CDEB8B"},1000);
-           
-	    $(".progreso2").switchClass('col-md-6','col-md-3',1000)
 
-	    $(".progreso2").animate({backgroundColor:"#CDEB8B"},1000);
-	    $("#verificacion").animate({backgroundColor:"#C3D9FF"},1000);
+     $(".progreso2").switchClass('col-md-6','col-md-3',1000)
 
-	    
-	     
-	    setTimeout(function(){
+     $(".progreso2").animate({backgroundColor:"#CDEB8B"},1000);
+     $("#verificacion").animate({backgroundColor:"#C3D9FF"},1000);
+
+
+
+     setTimeout(function(){
 	      /*$("#l2").click();
 	      $(".progreso1").css("border-left","solid 0px");
 	      $(".progreso2").css("border-left","solid 20px",1000);*/
@@ -33,93 +33,93 @@ angular.module('solicitarApp', []).controller('solicitarCtrl', ['$scope', functi
 
 
 	    },1500);
-  	}  else  {
-      alert("Debes indicar primero la ubicacion de tus casas.")
-    }
-    
+   }  else  {
+    alert("Debes indicar primero la ubicacion de tus casas.")
   }
 
-  function marcarLineas(){
+}
 
-    var dist  = 9999999999;
-    var marcaMasCercana ;
-    var ubicacion = document.getElementById('ubicacion').value;
-    var cantidad = document.getElementById('cantidad').value;
-    
-    console.log(ubicacion);
-    if(markers[0]==undefined ){
-      alert("Debe seleccionar una posicion en el mapa.")
-    } else  {
-      casasExistentes.forEach(function(marker) {
-          var distancia = Dist(marker.lat,marker.lon,markers[0].position.k,markers[0].position.D);
-          var beachMarker = new google.maps.Marker({
-            position: new google.maps.LatLng(marker.lat,+marker.lon),
-            map: map,
-            icon: 'casa2.png',
-          });
-          if(parseInt(distancia) < parseInt(dist) && cantidad<= marker.cantidad){
-            marcaMasCercana = marker;
-            dist = distancia;
-          }
+function marcarLineas(){
+
+  var dist  = 9999999999;
+  var marcaMasCercana ;
+  var ubicacion = document.getElementById('ubicacion').value;
+  var cantidad = document.getElementById('cantidad').value;
+
+  console.log(ubicacion);
+  if(markers[0]==undefined ){
+    alert("Debe seleccionar una posicion en el mapa.")
+  } else  {
+    casasExistentes.forEach(function(marker) {
+      var distancia = Dist(marker.lat,marker.lon,markers[0].position.k,markers[0].position.D);
+      var beachMarker = new google.maps.Marker({
+        position: new google.maps.LatLng(marker.lat,+marker.lon),
+        map: map,
+        icon: 'casa2.png',
       });
-      var ruta = [new google.maps.LatLng(markers[0].position.k, markers[0].position.D),
-                    new google.maps.LatLng(marcaMasCercana.lat, marcaMasCercana.lon)];
-      polylineas = new google.maps.Polyline({        
-        path: ruta,
-        map: map, 
-        strokeColor: '#FF0000', 
-        strokeWeight: 4,  
-        strokeOpacity: 0.6, 
-        clickable: false     });
-    }
+      if(parseInt(distancia) < parseInt(dist) && cantidad<= marker.cantidad){
+        marcaMasCercana = marker;
+        dist = distancia;
+      }
+    });
+    var ruta = [new google.maps.LatLng(markers[0].position.k, markers[0].position.D),
+    new google.maps.LatLng(marcaMasCercana.lat, marcaMasCercana.lon)];
+    polylineas = new google.maps.Polyline({        
+      path: ruta,
+      map: map, 
+      strokeColor: '#FF0000', 
+      strokeWeight: 4,  
+      strokeOpacity: 0.6, 
+      clickable: false     });
   }
+}
 function buscarCaminos(){
 
-    var ubicacion = document.getElementById('ubicacion').value;
-    console.log($("#cantidad").val())
-    
-    if($("#cantidad").val()=="" || $("#cantidad").val()<1){
+  var ubicacion = document.getElementById('ubicacion').value;
+  console.log($("#cantidad").val())
 
-    }
-    else if(markers[0]!=undefined){
+  if($("#cantidad").val()=="" || $("#cantidad").val()<1){
 
-       obtenerNombre(markers[0].position.k,markers[0].position.D)
+  }
+  else if(markers[0]!=undefined){
 
-    } else if(ubicacion!=""){
-      
-      obtenerCoordenadas(ubicacion);
+   obtenerNombre(markers[0].position.k,markers[0].position.D)
 
-    } else {
-             $( "#dialog" ).dialog( "open" );
+ } else if(ubicacion!=""){
+
+  obtenerCoordenadas(ubicacion);
+
+} else {
+ $( "#dialog" ).dialog( "open" );
 
       //alert("Debe seleccionar una posicion en el mapa o escribir una ubicacion.")
     }
   }
 
 
-function obtenerNombre(lat,lng){
-  var latLng = new google.maps.LatLng(lat,lng);
+  function obtenerNombre(lat,lng){
+    var latLng = new google.maps.LatLng(lat,lng);
 
-  geocoder.geocode( { 'latLng': latLng}, function(results, status) {
-         
+    geocoder.geocode( { 'latLng': latLng}, function(results, status) {
+
         //si el estado de la llamado es OK
         if (status == google.maps.GeocoderStatus.OK) {
-            obtenerCamino(results[0]);
-            document.getElementById('ubicacion').value =results[0].formatted_address;
-           
-      } else {
+          obtenerCamino(results[0]);
+          document.getElementById('ubicacion').value =results[0].formatted_address;
+
+        } else {
           //si no es OK devuelvo error
 
           alert("No podemos encontrar la direcci&oacute;n, error: " + status);
-      }
-    });
-}
+        }
+      });
+  }
 
 
-function obtenerCoordenadas(ubicacion){
-  console.log(ubicacion);
-  geocoder.geocode( { 'address': ubicacion}, function(results, status) {
-         
+  function obtenerCoordenadas(ubicacion){
+    console.log(ubicacion);
+    geocoder.geocode( { 'address': ubicacion}, function(results, status) {
+
         //si el estado de la llamado es OK
         if (status == google.maps.GeocoderStatus.OK) {
             //centro el mapa en las coordenadas obtenidas
@@ -130,19 +130,19 @@ function obtenerCoordenadas(ubicacion){
             console.log(results[0].geometry.location);
             var marca =results[0] ;
             obtenerCamino(marca);
-        } else {
+          } else {
           //si no es OK devuelvo error
           alert("No podemos encontrar la direcci&oacute;n, error: " + status);
         }
       });
-}
-function obtenerCamino(origen){
-  var dist  = 9999999999;
-  var marcaMasCercana ;
-  var mejorRespuesta  ;
-  var cantidad = document.getElementById('cantidad').value;
+  }
+  function obtenerCamino(origen){
+    var dist  = 9999999999;
+    var marcaMasCercana ;
+    var mejorRespuesta  ;
+    var cantidad = document.getElementById('cantidad').value;
 
-  casasExistentes.forEach(function(marker) {
+    casasExistentes.forEach(function(marker) {
       var distancia = Dist(marker.lat,marker.lon,origen.geometry.location.k,origen.geometry.location.D);
       var beachMarker = new google.maps.Marker({
         position: new google.maps.LatLng(marker.lat,+marker.lon),
@@ -153,35 +153,35 @@ function obtenerCamino(origen){
         marcaMasCercana = marker;
         dist = distancia;
       }
-  });
-  console.log(origen.formatted_address);
-  if(marcaMasCercana!=undefined){
+    });
+    console.log(origen.formatted_address);
+    if(marcaMasCercana!=undefined){
       var request = {
-     origin: origen.formatted_address,
-     destination: marcaMasCercana.lat+","+marcaMasCercana.lon,
-     travelMode: google.maps.TravelMode.DRIVING,
-     unitSystem: google.maps.UnitSystem.METRIC,
-      avoidHighways: false,
-      avoidTolls: false
+       origin: origen.formatted_address,
+       destination: marcaMasCercana.lat+","+marcaMasCercana.lon,
+       travelMode: google.maps.TravelMode.DRIVING,
+       unitSystem: google.maps.UnitSystem.METRIC,
+       avoidHighways: false,
+       avoidTolls: false
      };
      
-    
-    directionsService.route(request, function(response, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-            directionsDisplay.setMap(map);
+
+     directionsService.route(request, function(response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setMap(map);
             //directionsDisplay.setPanel($("#panel_ruta").get(0));
             directionsDisplay.setDirections(response);
             if(markers[0]!=undefined) {markers[0].setMap(null);}
 
             var efectos = $("#ubicacion-contenedor").animate({backgroundColor:"#CDEB8B"},1000);
-           
+
             $(".progreso1").switchClass('col-md-6','col-md-3',1000)
 
             $(".progreso1").animate({backgroundColor:"#CDEB8B"},1000);
             $("#accesorios").animate({backgroundColor:"#C3D9FF"},1000);
 
             
-             
+
             setTimeout(function(){
               /*$("#l2").click();
               $(".progreso1").css("border-left","solid 0px");
@@ -193,19 +193,19 @@ function obtenerCamino(origen){
 
             },1500);
             
-        } else {
-                alert("No se encontro ninguna camino que llege a "+origen.formatted_address+" por favor seleccione una ubicacion mas cercana a una ruta o ciudad.");
-        }
-    }); 
-  } else  {
-    alert("No existe disponibilidad de casas.");
-  } 
- 
+          } else {
+            alert("No se encontro ninguna camino que llege a "+origen.formatted_address+" por favor seleccione una ubicacion mas cercana a una ruta o ciudad.");
+          }
+        }); 
+} else  {
+  alert("No existe disponibilidad de casas.");
+} 
+
 }
 
 function Dist(lat1, lon1, lat2, lon2)
-  {
-    rad = function(x) {return x*Math.PI/180;}
+{
+  rad = function(x) {return x*Math.PI/180;}
 
     var R     = 6378.137;                          //Radio de la tierra en km
     var dLat  = rad( lat2 - lat1 );
@@ -240,7 +240,7 @@ function Dist(lat1, lon1, lat2, lon2)
         }
       }
     });
- 
+
     $( "#opener" ).click(function() {
       $( "#dialog" ).dialog( "open" );
     });
@@ -249,10 +249,10 @@ function Dist(lat1, lon1, lat2, lon2)
 
 
   $(document).ready(function(){
-  $('a[href*=#]').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
-    && location.hostname == this.hostname) {
-      var $target = $(this.hash);
+    $('a[href*=#]').click(function() {
+      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+        && location.hostname == this.hostname) {
+        var $target = $(this.hash);
       $target = $target.length && $target
       || $('[name=' + this.hash.slice(1) +']');
       if ($target.length) {
@@ -262,13 +262,13 @@ function Dist(lat1, lon1, lat2, lon2)
         }
         $('html,body')
         .stop().animate({scrollTop: targetOffset}, 1300, 'easeOutCubic');
-       return false;
+        return false;
       }
     }
   });
 
-  
-});
+
+  });
 
   $(function() { //shorthand document.ready function
     $('#form_ubicacion').on('submit', function(e) { //use on if jQuery 1.7+
@@ -278,19 +278,22 @@ function Dist(lat1, lon1, lat2, lon2)
           buscarCaminos();  
         }
         
-    });
+      });
     $('#ubicacion').on('input',function(e){
-          setAllMap(null);
+      setAllMap(null);
 
       markers=[];
-      });
+    });
 
     $(window).scroll(function(){
       if($('.accesorios').offset().top > $(window).scrollTop()+200){
         $('#accesorios_tabla').addClass('animated fadeInUp');
       }
     });
-});
+  });
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
 }])
 
 

@@ -3,7 +3,7 @@
   }
 
 
-  .accesorio_descripcion , .accesorios_imagen , .ubicacion_titulo, #map_canvas,.accesorios_titulo, .progresos{
+  .accesorio_descripcion , .accesorios_imagen , .ubicacion_titulo, #map_canvas,.accesorios_titulo, .progresos,.glyphicon-question-sign, .modoResumido{
     display: none;
   }
 
@@ -47,6 +47,14 @@ height: 30%;
  padding: 0em 0em 0em 0em;
 }
 
-.infolocalizacion , .infomapa , .arrow-before , .checkTutorial{
+.mapa_info{
   display: none;
+}
+
+#filtroNombre{
+  width: 90%;
+}
+
+.filtroNombre{
+  padding: 1em;
 }

@@ -11,97 +11,12 @@
         height: 70%;
       }
 
-      .mapa:hover .infomapa,
-      .mapa:hover .infolocalizacion , 
-      .ubicacion-formulario:hover .infolocalizacion,
-      .ubicacion-formulario:hover .infomapa{
-        visibility: hidden;
+      .mapa_info{
+        position: absolute;
+        z-index: 10;
       }
-
-
-      .mapa:hover {
-
-      }
-
       #map_canvas { height: 100% }
-
-      .infomapa{
-        background-color: #337ab7;
-        padding: 2em;
-        position: absolute;
-        bottom: 0%;
-        left: 50%;
-        color: white;
-        font-weight: bold;
-        font-size: 15px;
-        -webkit-animation: 0.6s parpadeo 10 alternate;
-        -moz-animation:0.6s parpadeo 10 alternate;
-         border-radius: 3em;
-      }
-
-      .infolocalizacion{
-        background-color: #337ab7;
-        padding: 2em;
-        position: absolute;
-        top: 0%;
-        z-index: 100;
-        left: 60%;
-        color: white;
-        font-weight: bold;
-        font-size: 15px;
-        opacity: 0;
-        border-radius: 3em;
-        -webkit-animation: 0.6s parpadeo 10 alternate;
-        -webkit-animation-delay:  0s;
-        -webkit-animation-fill-mode:forwards ;
-        -moz-animation:0.6s parpadeo 10 alternate 5s;
-        -moz-animation-delay:  5s;
-      }
-
-      .arrow-infolocalicacion {
-          width:0px;
-          height:0px;
-          border-bottom:7px solid transparent;  /* izquierda flecha */
-          border-top:7px solid transparent; /* derecha flecha */
-          border-right:14px solid #337ab7; /* base flecha y color*/
-          font-size:0px;
-          line-height:0px;
-         left: -5.5%;
-         top: 50%;
-         z-index: 1000;
-          position: absolute;
-      }
-
-      .arrow-infomapa{
-          width:0px;
-        height:0px;
-        border-left: 12px solid transparent;  /* izquierda flecha */
-        border-right: 12px solid transparent; /* derecha flecha */
-        border-bottom: 25px solid #337ab7; /* base flecha y color*/
-        font-size:0px;
-        line-height:0px;
-        top: -13%;
-        left: 50%;
-         z-index: 1000;
-     position: absolute;
-      }
-
-      @-webkit-keyframes  parpadeo {
-        from {
-         opacity: 1;
-        }
-
-        to {
-          opacity: .5;
-        }
-      }
-
-      .checkTutorial{
-        position:relative;
-
-
-      }
-
+ 
 
       .contenido{
         padding-top: 5em;
@@ -125,7 +40,15 @@
         text-align: center;
         padding: 0.5em;
         margin: 2em;
-        background-color: #81BCCF;
+        background: #499bea; /* Old browsers */
+background: -moz-linear-gradient(top,  #499bea 0%, #207ce5 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#499bea), color-stop(100%,#207ce5)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #499bea 0%,#207ce5 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #499bea 0%,#207ce5 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #499bea 0%,#207ce5 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #499bea 0%,#207ce5 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#207ce5',GradientType=0 ); /* IE6-9 */
+
       }
       .progreso1{
           background-color: #C3D9FF;
@@ -145,6 +68,13 @@
 .accesorios{
   padding-bottom: 10em;
 
+}
+#filtroNombre{
+  width: 50%;
+  margin-right: 1em;
+}
+.css-tooltip + .tooltip  {
+  background-color: #EEEEEE;
 }
 
 .accesorios_botoner{
@@ -171,6 +101,7 @@
   cursor: pointer;
 }
 
+
 #accesorios_tabla{
   height: 90%;
   padding: 0em 2em 0 2em;
@@ -180,7 +111,15 @@
 
 .accesorios_titulo{
   padding: 1em;
-  background-color: #81BCCF;
+  background: #499bea; /* Old browsers */
+background: -moz-linear-gradient(top,  #499bea 0%, #207ce5 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#499bea), color-stop(100%,#207ce5)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #499bea 0%,#207ce5 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #499bea 0%,#207ce5 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #499bea 0%,#207ce5 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #499bea 0%,#207ce5 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#207ce5',GradientType=0 ); /* IE6-9 */
+
   font-size: 20px;
   font-weight: bold;
   text-align: center;
@@ -201,7 +140,7 @@
   border-bottom: groove;
 }
 
-.accesorios_items:nth-child(2n+0){
+.accesorios_items:nth-child(2n+1){
   background-color: #DAD6CC;
 }
 .accesorios_items:hover{
@@ -209,9 +148,9 @@
 }
 
 .accesorios_items:hover .accesorios_imagen{
-  -webkit-transform: rotate(60deg);
- -moz-transform: rotate(60deg);
- transform: rotate(60deg);
+  -webkit-transform: rotate(35deg);
+ -moz-transform: rotate(35deg);
+ transform: rotate(35deg);
 } 
 
 .ui-dialog

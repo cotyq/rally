@@ -117,43 +117,52 @@
       <!--------------------------------              Ubicacion                         --------------------------     -->
 
       <section class="contenido">
-              
+
         <div  class="ubicacion-contenedor" id="ubicacion-contenedor">
          <div class="ubicacion_titulo"><h3>Seleccione un punto en el mapa o ingrese el nombre de una ciudad cercana</h3>  
-          <div class="checkTutorial"><input type="checkbox" ng-model="checkedTutorial"> Ver Funcionamiento</div>
          </div>
-         
+
          <div class="mapa col-md-6">
+          <span class="glyphicon glyphicon-question-sign mapa_info" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Permite seleccionar la posicion geografica donde se requierenlos hogares"></span>
           <div id="map_canvas" style="width:100%; height:100%"></div>
-          <div class="infomapa" ng-show="checkedTutorial">Puede realizar un clic para especificar una posición...<div class="arrow-infomapa"></div></div>
         </div>
         <div class="col-md-6 ubicacion-formulario">
-          <div class="infolocalizacion" ng-show="checkedTutorial">...O simplemente escribir un destinto esta caja de texto
-                      <div class="arrow-infolocalicacion"></div>
-          </div>
           <form method="post" id="form_ubicacion">  
             <div class="form-group">
-              <label for="ubicacio" class="col-sm-8 control-label">Escriba una localización</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="ubicacion" placeholder="Santa fe, Argentina">
+              <label for="ubicacio" class="col-sm-8 control-label">Escriba una localización
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Ubicacion aproximada donde se instalaran las casas"></span>
+              </label>
+              <div class="col-sm-9" form-inline>
+                <input type="text" class="form-control" id="ubicacion" ng-model="model_ubicacion" placeholder="Santa fe, Argentina" >
               </div>
             </div>
             <div class="form-group">
-              <label for="cantidad" class="col-sm-8 control-label">Cantidad</label>
+              <label for="cantidad" class="col-sm-8 control-label">Cantidad             
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Cantidad de hogares requeridos para una posicion indicada.">
+                </span>
+              </label>
               <div class="col-sm-9">
-                <input  type="number" class="form-control" id="cantidad" pattern="[0-9]*" placeholder="Cantidad" min="1" required>
+                <input  type="number" class="form-control" id="cantidad" ng-model="model_cantidad" pattern="[0-9]*" placeholder="Cantidad" min="1" required>
               </div>
             </div>
             <div class="form-group">
-              <label for="desde" class="col-sm-8 control-label">Desde</label>
+              <label for="desde" class="col-sm-8 control-label">
+                Desde             
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Fecha en la cual se requieren los hogares.">
+                </span>
+              </label>
               <div class="col-sm-9">
-                <input  type="date" class="form-control" id="desde" required>
+                <input  type="date" class="form-control" ng-model="model_desde" id="desde" required>
               </div>
             </div>
             <div class="form-group">
-              <label for="hasta" class="col-sm-8 control-label">Hasta</label>
+              <label for="hasta" class="col-sm-8 control-label">
+                Hasta
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Fecha en que se liberaran los hogares.">
+                </span>
+              </label>
               <div class="col-sm-9">
-                <input  type="date" class="form-control" id="hasta" required>
+                <input  type="date" class="form-control" id="hasta" ng-model="model_hasta" required>
               </div>
             </div>
             <div class="form-group">  
@@ -170,50 +179,63 @@
       <div class="accesorios container" id="accesorios">
         <div id="accesorios_tabla"  class="col-md-8 col-md-offset-2" >
           <div class="accesorios_titulo">Accesorios/Partes</div>
-          <div class="form-group">
-            <input type="text" class="form-control col-md-4" id="filtroNombre" ng-model="filtroNombre" ng-init="filtroNombre=''" placeholder="Filtrar por nombre">
-            <br>
-          </div>
-          <form id="form_accesorios" ng-submit="validarAccesorios()" >
-            <div  class="accesorios_items"  ng-repeat="accesorio in accesorios| filter:{nombre:filtroNombre}" >
-              <div class="row" >
-                <div class="col-md-2"><img ng-src="img/{{accesorio.imagen}}" class="img-thumbnail accesorios_imagen" height="110"> </div>
-                <div class="col-md-10">
-                  <div class="accesorio_titulo">{{ accesorio.nombre}}</div>
-                  <div class="col-md-9 accesorio_descripcion" >{{ accesorio.descripcion}}</div>
-                  <div class="col-md-3 accesorio_cantidad">
-                    <label for="hasta" class="col-xs-4 col-sm-8 control-label">Cantidad</label>
-                    <div class="col-xs-8 col-sm-9">
-                      <input ng-model="accesorio.cantidad" min="0" type="number" pattern="[0-9]*" class="form-control"   ng-disabled="completado" required>
-                    </div> 
-                  </div>
+          <div class="form-group form-inline filtroNombre">
+            <center>          
+            <label>
+            &nbsp;Nombre: &nbsp;
+            </label>
+            <input type="text" class="form-control" id="filtroNombre" ng-model="filtroNombre" ng-init="filtroNombre=''" placeholder="Filtrar por nombre">
+            <span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Permite filtrar los accesorios por nombre, para encontrarlos de manera mas veloz.">
+            </span>  
+            <label class="modoResumido">
+                 &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"  ng-model="resumirAccesorios">&nbsp; Modo resumido &nbsp;
+                 <span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Desactiva la descripcion y las imagenes para acelerar el tramite.">
+                  </span>
+              </label>
+          </center>
+        </div>
+        <form id="form_accesorios" ng-submit="validarAccesorios()" >
+          <div  class="accesorios_items"  ng-repeat="accesorio in accesorios| filter:{nombre:filtroNombre}" >
+            <div class="row" >
+              <div class="col-md-2"><img ng-src="img/{{accesorio.imagen}}" ng-hide="resumirAccesorios" class="img-thumbnail accesorios_imagen" height="110"> </div>
+              <div class="col-md-10">
+                <div class="col-md-9">
+                    <div class="accesorio_titulo">{{ accesorio.nombre}}</div>
+                    <div class="accesorio_descripcion" ng-hide="resumirAccesorios">{{ accesorio.descripcion}}</div>
                 </div>
+                <div class="col-md-3 accesorio_cantidad">
+                  <label for="hasta" class="col-xs-4 col-sm-8 control-label">Cantidad</label>
+                <div class="col-xs-8 col-sm-9">
+                  <input ng-model="accesorio.cantidad" min="0" type="number" pattern="[0-9]*" class="form-control"   ng-disabled="completado" required>
+                </div> 
               </div>
             </div>
-            <div class="accesorios_botoner">
-              <button type="submit"   class="btn btn-primary" >Completar</button>
-            </div>
-          </form>
+          </div>
         </div>
-      </div>
-
-
-      <!--------------------------------              Verificación                         --------------------------     -->
-
-      <div class="verificacion" id="verificacion">
-
-      </div>
-    </section>
-
-
-
-  </body>
-  <div id="dialog" title="Datos incorrectos">
-    <span class="ui-icon  ui-icon-closethick"></span>   
-    <p>Debe seleccionar una posición en el mapa o escribir una ubicación.</p>
+        <div class="accesorios_botoner">
+          <button type="submit"   class="btn btn-primary" >Completar</button>
+        </div>
+      </form>
+    </div>
   </div>
 
 
+  <!--------------------------------              Verificación                         --------------------------     -->
 
-  </html>
+  <div class="verificacion" id="verificacion">
+
+  </div>
+</section>
+
+
+
+</body>
+<div id="dialog" title="Datos incorrectos">
+  <span class="ui-icon  ui-icon-closethick"></span>   
+  <p>Debe seleccionar una posición en el mapa o escribir una ubicación.</p>
+</div>
+
+
+
+</html>
 
