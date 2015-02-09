@@ -3,7 +3,7 @@
   }
 
 
-  .accesorio_descripcion , .accesorios_imagen , .ubicacion_titulo, #map_canvas,.accesorios_titulo, .progresos,.glyphicon-question-sign, .modoResumido{
+  .accesorio_descripcion , .accesorios_imagen , .ubicacion_titulo, #map_canvas, .progresos,.glyphicon-question-sign, .modoResumido{
     display: none;
   }
 
@@ -57,4 +57,15 @@ height: 30%;
 
 .filtroNombre{
   padding: 1em;
+}
+
+.reporteVyV{
+    padding-top: 1em;
+}
+
+
+
+.accesorios_titulo{
+  top:0px;
+  padding: 0.2em;
 }

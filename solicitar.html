@@ -44,7 +44,7 @@
       <link rel="stylesheet" href="css/animate.css">
 
     </head>
-    <body onload="initialize()" ng-app="solicitarApp" ng-controller="solicitarCtrl">
+    <body onload="initialize()" ng-app="solicitarApp" ng-controller="solicitarCtrl" ng-init="username='Anonimo'">
 
       <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -122,7 +122,7 @@
          <div class="ubicacion_titulo"><h3>Seleccione un punto en el mapa o ingrese el nombre de una ciudad cercana</h3>  
          </div>
 
-         <div class="mapa col-md-6">
+         <div class="mapa col-md-6" ng-click="model_ubicacion='Marca'">
           <span class="glyphicon glyphicon-question-sign mapa_info" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Permite seleccionar la posicion geografica donde se requierenlos hogares"></span>
           <div id="map_canvas" style="width:100%; height:100%"></div>
         </div>
@@ -166,8 +166,8 @@
               </div>
             </div>
             <div class="form-group">  
-              <div class="col-sm-10" style="text-align:center"> 
-                <button id="buscar" ng-click="buscarCaminos()" type="submit" class="btn btn-success">Buscar casas</button>
+              <div class="col-sm-9  " style="text-align:center"> 
+                <button id="buscar" ng-click="buscarCaminos()" type="submit" class="btn btn-success">Completar</button>
               </div>
             </div>
           </form>
@@ -201,7 +201,9 @@
               <div class="col-md-10">
                 <div class="col-md-9">
                     <div class="accesorio_titulo">{{ accesorio.nombre}}</div>
-                    <div class="accesorio_descripcion" ng-hide="resumirAccesorios">{{ accesorio.descripcion}}</div>
+                    <div class="accesorio_descripcion" ng-hide="resumirAccesorios">
+                      <strong>Descripción:</strong>
+                      {{ accesorio.descripcion}}</div>
                 </div>
                 <div class="col-md-3 accesorio_cantidad">
                   <label for="hasta" class="col-xs-4 col-sm-8 control-label">Cantidad</label>
@@ -222,20 +224,46 @@
 
   <!--------------------------------              Verificación                         --------------------------     -->
 
-  <div class="verificacion" id="verificacion">
-
+  <div class="verificacion container" id="verificacion">
+    <div class="verificacion-contenedor col-md-10 col-md-offset-1">
+      <div class="accesorios_titulo">Verificación y validación</div>
+        <div class="reporteVyV">
+            <div class="col-md-3 col-sm-6 col-xs-12"><strong>Usuario:</strong>&nbsp; {{username}}</div>
+            <div class="col-md-3 col-sm-6 col-xs-12"><strong>Cantidad:</strong>&nbsp; {{model_cantidad}}</div>
+            <div class="col-md-3 col-sm-6 col-xs-12"><strong>Desde:</strong>&nbsp; {{model_desde}}</div>
+            <div class="col-md-3 col-sm-6 col-xs-12"><strong>Hasta:</strong>&nbsp; {{model_hasta}}</div>
+            <div class="col-md-6 col-sm-12 col-xs-12"><strong>Ubicacion:</strong>&nbsp; {{model_ubicacion}}</div>
+            <div class="col-md-6 col-sm-12 col-xs-12"><a class="href-ruta" href="" onclick="$('#modal-ruta').modal('show')">Ver ruta</a></div>
+        </div>
+    </div>
+    
   </div>
 </section>
 
 
 
 </body>
-<div id="dialog" title="Datos incorrectos">
-  <span class="ui-icon  ui-icon-closethick"></span>   
-  <p>Debe seleccionar una posición en el mapa o escribir una ubicación.</p>
-</div>
+  <div id="dialog" title="Datos incorrectos">
+    <span class="ui-icon  ui-icon-closethick"></span>   
+    <p>Debe seleccionar una posición en el mapa o escribir una ubicación.</p>
+  </div>
 
+  <div class="modal fade" id="modal-ruta">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Ruta</h4>
+      </div>
+      <div class="modal-body" id="panel_ruta">
 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 </html>
 

@@ -10,7 +10,7 @@ angular.module('solicitarApp', []).controller('solicitarCtrl', ['$scope', functi
   {nombre:"Aislamiento térmico: Lana de vidrio" , descripcion:"La lana de vidrio es una fibra mineral fabricada con millones de filamentos de vidrio unidos con un aglutinante. El espacio libre con aire atrapado entre las fibras aumentan la resistencia a la transmisión de calor.",imagen:"lana.jpg",cantidad:0},
   {nombre:"Aislante termico: Lana de roca" , descripcion:"La lana de roca, perteneciente a la familia de las lanas minerales, es un material fabricado a partir de la roca volcánica. Se utiliza principalmente como aislamiento térmico y como protección pasiva contra el fuego en la edificación, debido a su estructura fibrosa multidireccional, que le permite albergar aire relativamente inmóvil en su interior.",cantidad:0,imagen:"lanaroca.jpg"}];
 
-
+  $scope.progreso=1;
   $scope.validarAccesorios = function(){
   	if($scope.progreso==2){
   		$scope.completado=true;
@@ -106,6 +106,9 @@ function buscarCaminos(){
         if (status == google.maps.GeocoderStatus.OK) {
           obtenerCamino(results[0]);
           document.getElementById('ubicacion').value =results[0].formatted_address;
+          $scope.model_ubicacion=results[0].formatted_address;
+          $scope.model_duracion = results[0].formatted_address;
+          console.log(results[0]);
 
         } else {
           //si no es OK devuelvo error
@@ -168,8 +171,8 @@ function buscarCaminos(){
 
      directionsService.route(request, function(response, status) {
       if (status == google.maps.DirectionsStatus.OK) {
-        directionsDisplay.setMap(map);
-            //directionsDisplay.setPanel($("#panel_ruta").get(0));
+            directionsDisplay.setMap(map);
+            directionsDisplay.setPanel($("#panel_ruta").get(0));
             directionsDisplay.setDirections(response);
             if(markers[0]!=undefined) {markers[0].setMap(null);}
 
@@ -179,8 +182,9 @@ function buscarCaminos(){
 
             $(".progreso1").animate({backgroundColor:"#CDEB8B"},1000);
             $("#accesorios").animate({backgroundColor:"#C3D9FF"},1000);
-
-            
+            $scope.progreso=2;
+            $(".href-ruta").css('visibility', 'visible');
+            console.log($scope.progreso);
 
             setTimeout(function(){
               /*$("#l2").click();
@@ -189,7 +193,7 @@ function buscarCaminos(){
               $(".progreso2").switchClass('col-md-3','col-md-6',1000)
               $(".progreso2").animate({backgroundColor:"#C3D9FF"},1000);
               document.getElementById("progreso1_estado").innerHTML ="Completado";
-              $scope.progreso=2;
+              
 
             },1500);
             
