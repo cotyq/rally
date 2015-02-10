@@ -119,7 +119,7 @@
       <section class="contenido">
 
         <div  class="ubicacion-contenedor" id="ubicacion-contenedor">
-         <div class="ubicacion_titulo"><h3>Seleccione un punto en el mapa o ingrese el nombre de una ciudad cercana</h3>  
+         <div class="ubicacion_titulo"><h3>Ingrese el nombre de una ciudad cercana <span class="puntoMapa">o seleccione un punto en el mapa</span></h3>  
          </div>
 
          <div class="mapa col-md-6" ng-click="model_ubicacion='Marca'">
@@ -181,74 +181,88 @@
           <div class="accesorios_titulo">Accesorios/Partes</div>
           <div class="form-group form-inline filtroNombre">
             <center>          
-            <label>
-            &nbsp;Nombre: &nbsp;
-            </label>
-            <input type="text" class="form-control" id="filtroNombre" ng-model="filtroNombre" ng-init="filtroNombre=''" placeholder="Filtrar por nombre">
-            <span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Permite filtrar los accesorios por nombre, para encontrarlos de manera mas veloz.">
-            </span>  
-            <label class="modoResumido">
-                 &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"  ng-model="resumirAccesorios">&nbsp; Modo resumido &nbsp;
-                 <span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Desactiva la descripcion y las imagenes para acelerar el tramite.">
-                  </span>
+              <label>
+                &nbsp;Nombre: &nbsp;
               </label>
-          </center>
-        </div>
-        <form id="form_accesorios" ng-submit="validarAccesorios()" >
+              <input type="text" class="form-control" id="filtroNombre" ng-model="filtroNombre" ng-init="filtroNombre=''" placeholder="Filtrar por nombre">
+              <span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Permite filtrar los accesorios por nombre, para encontrarlos de manera mas veloz.">
+              </span>  
+              <label class="modoResumido">
+               &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"  ng-model="resumirAccesorios">&nbsp; Modo resumido &nbsp;
+               <span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Desactiva la descripcion y las imagenes para acelerar el tramite.">
+               </span>
+             </label>
+           </center>
+         </div>
+         <form id="form_accesorios" ng-submit="validarAccesorios()" >
           <div  class="accesorios_items"  ng-repeat="accesorio in accesorios| filter:{nombre:filtroNombre}" >
             <div class="row" >
               <div class="col-md-2"><img ng-src="img/{{accesorio.imagen}}" ng-hide="resumirAccesorios" class="img-thumbnail accesorios_imagen" height="110"> </div>
               <div class="col-md-10">
                 <div class="col-md-9">
-                    <div class="accesorio_titulo">{{ accesorio.nombre}}</div>
-                    <div class="accesorio_descripcion" ng-hide="resumirAccesorios">
-                      <strong>Descripción:</strong>
-                      {{ accesorio.descripcion}}</div>
+                  <div class="accesorio_titulo">{{ accesorio.nombre}}</div>
+                  <div class="accesorio_descripcion" ng-hide="resumirAccesorios">
+                    <strong>Descripción:</strong>
+                    {{ accesorio.descripcion}}</div>
+                  </div>
+                  <div class="col-md-3 accesorio_cantidad">
+                    <label for="hasta" class="col-xs-4 col-sm-8 control-label">Cantidad</label>
+                    <div class="col-xs-8 col-sm-9">
+                      <input ng-model="accesorio.cantidad" min="0" type="number" pattern="[0-9]*" class="form-control"   ng-disabled="completado" required>
+                    </div> 
+                  </div>
                 </div>
-                <div class="col-md-3 accesorio_cantidad">
-                  <label for="hasta" class="col-xs-4 col-sm-8 control-label">Cantidad</label>
-                <div class="col-xs-8 col-sm-9">
-                  <input ng-model="accesorio.cantidad" min="0" type="number" pattern="[0-9]*" class="form-control"   ng-disabled="completado" required>
-                </div> 
               </div>
             </div>
-          </div>
+            <div class="accesorios_botoner">
+              <button type="submit"   class="btn btn-primary" >Completar</button>
+            </div>
+          </form>
         </div>
-        <div class="accesorios_botoner">
-          <button type="submit"   class="btn btn-primary" >Completar</button>
-        </div>
-      </form>
-    </div>
-  </div>
+      </div>
 
 
-  <!--------------------------------              Verificación                         --------------------------     -->
+      <!--------------------------------              Verificación                         --------------------------     -->
 
-  <div class="verificacion container" id="verificacion">
-    <div class="verificacion-contenedor col-md-10 col-md-offset-1">
-      <div class="accesorios_titulo">Verificación y validación</div>
-        <div class="reporteVyV">
+      <div class="verificacion container" id="verificacion">
+        <div class="verificacion-contenedor col-md-10 col-md-offset-1">
+          <div class="accesorios_titulo">Verificación y validación</div>
+          <div class="reporteVyV">
             <div class="col-md-3 col-sm-6 col-xs-12"><strong>Usuario:</strong>&nbsp; {{username}}</div>
             <div class="col-md-3 col-sm-6 col-xs-12"><strong>Cantidad:</strong>&nbsp; {{model_cantidad}}</div>
-            <div class="col-md-3 col-sm-6 col-xs-12"><strong>Desde:</strong>&nbsp; {{model_desde}}</div>
-            <div class="col-md-3 col-sm-6 col-xs-12"><strong>Hasta:</strong>&nbsp; {{model_hasta}}</div>
-            <div class="col-md-6 col-sm-12 col-xs-12"><strong>Ubicacion:</strong>&nbsp; {{model_ubicacion}}</div>
-            <div class="col-md-6 col-sm-12 col-xs-12"><a class="href-ruta" href="" onclick="$('#modal-ruta').modal('show')">Ver ruta</a></div>
-        </div>
-    </div>
-    
-  </div>
-</section>
+            <div class="col-md-6 col-sm-12 col-xs-12"><strong>Fecha de la solicitud: &nbsp;&nbsp;</strong>{{model_fechaActual| date:'mediumDate'}}</div>
+            <div class="col-md-offset-6 col-md-3 col-sm-6 col-xs-12"><strong>Desde:</strong>&nbsp; {{model_desde | date:'mediumDate'}}</div>
+            <div class="col-md-3 col-sm-6 col-xs-12"><strong>Hasta:</strong>&nbsp; {{model_hasta| date:'mediumDate'}}</div>
+            <div class="col-md-6 col-sm-12 col-xs-12"><strong>Ubicacion:</strong>&nbsp; {{model_ubicacion}} &nbsp;&nbsp;<strong><a class="href-ruta" href="" onclick="$('#modal-ruta').modal('show')"><i>VER RUTA</i></a></strong></div>
+            
+            <div class="col-md-12 col-sm-12 col-xs-12"><strong><h4>ACCESORIOS</h4></strong></div>
+            <div class="col-md-12 col-sm-12 col-xs-12 encabezados" style="border-bottom: none">
+              <strong>
+                <div class="col-md-6 col-sm-5 col-xs-12"><center>Nombre</center></div>
+                <div class="col-md-3 col-sm-3 col-xs-12"><center>Cantidad</center></div>
+                <div class="col-md-3 col-sm-4 col-xs-12"><center>Disponibilidad</center></div>
+              </strong>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12"  style="border-bottom: none" ng-repeat="accesorio in accesoriosFiltrados"> 
+             <div class="col-md-6 col-sm-5 col-xs-12">{{accesorio.nombre}}</div>
+             <div class="col-md-3 col-sm-3 col-xs-12"><center>{{accesorio.cantidad}}</center></div>
+             <div class="col-md-3 col-sm-4 col-xs-12"><center>DISPONIBLE</center></div>
+           </div>
+         </div>
+       </div>
+
+     </div>
+   </section>
 
 
 
-</body>
-  <div id="dialog" title="Datos incorrectos">
-    <span class="ui-icon  ui-icon-closethick"></span>   
-    <p>Debe seleccionar una posición en el mapa o escribir una ubicación.</p>
-  </div>
+ </body>
+ <div id="dialog" title="Datos incorrectos">
+  <span class="ui-icon  ui-icon-closethick"></span>   
+  <p>Debe seleccionar una posición en el mapa o escribir una ubicación.</p>
+</div>
 
-  <div class="modal fade" id="modal-ruta">
+<div class="modal fade" id="modal-ruta">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -259,7 +273,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

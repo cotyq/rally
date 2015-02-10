@@ -11,6 +11,8 @@ angular.module('solicitarApp', []).controller('solicitarCtrl', ['$scope', functi
   {nombre:"Aislante termico: Lana de roca" , descripcion:"La lana de roca, perteneciente a la familia de las lanas minerales, es un material fabricado a partir de la roca volcánica. Se utiliza principalmente como aislamiento térmico y como protección pasiva contra el fuego en la edificación, debido a su estructura fibrosa multidireccional, que le permite albergar aire relativamente inmóvil en su interior.",cantidad:0,imagen:"lanaroca.jpg"}];
 
   $scope.progreso=1;
+  $scope.model_fechaActual = new Date();
+  $scope.accesoriosFiltrados=[];
   $scope.validarAccesorios = function(){
   	if($scope.progreso==2){
   		$scope.completado=true;
@@ -21,7 +23,12 @@ angular.module('solicitarApp', []).controller('solicitarCtrl', ['$scope', functi
      $(".progreso2").animate({backgroundColor:"#CDEB8B"},1000);
      $("#verificacion").animate({backgroundColor:"#C3D9FF"},1000);
 
-
+     angular.forEach($scope.accesorios, function(value,key){
+        if(value.cantidad>0){
+          $scope.accesoriosFiltrados.push(value);
+        }
+     });
+     $scope.$apply();
 
      setTimeout(function(){
 	      /*$("#l2").click();
@@ -76,25 +83,21 @@ function marcarLineas(){
 function buscarCaminos(){
 
   var ubicacion = document.getElementById('ubicacion').value;
-  console.log($("#cantidad").val())
 
-  if($("#cantidad").val()=="" || $("#cantidad").val()<1){
-
-  }
-  else if(markers[0]!=undefined){
+  if(markers[0]!=undefined){
 
    obtenerNombre(markers[0].position.k,markers[0].position.D)
 
- } else if(ubicacion!=""){
+   } else if(ubicacion!=""){
 
-  obtenerCoordenadas(ubicacion);
+    obtenerCoordenadas(ubicacion);
 
-} else {
- $( "#dialog" ).dialog( "open" );
+  } else {
+   $( "#dialog" ).dialog( "open" );
 
-      //alert("Debe seleccionar una posicion en el mapa o escribir una ubicacion.")
+        //alert("Debe seleccionar una posicion en el mapa o escribir una ubicacion.")
+      }
     }
-  }
 
 
   function obtenerNombre(lat,lng){
@@ -105,10 +108,11 @@ function buscarCaminos(){
         //si el estado de la llamado es OK
         if (status == google.maps.GeocoderStatus.OK) {
           obtenerCamino(results[0]);
-          document.getElementById('ubicacion').value =results[0].formatted_address;
+          
           $scope.model_ubicacion=results[0].formatted_address;
-          $scope.model_duracion = results[0].formatted_address;
-          console.log(results[0]);
+
+          console.log(results[0].formatted_address);
+          $scope.$apply()
 
         } else {
           //si no es OK devuelvo error
@@ -183,7 +187,7 @@ function buscarCaminos(){
             $(".progreso1").animate({backgroundColor:"#CDEB8B"},1000);
             $("#accesorios").animate({backgroundColor:"#C3D9FF"},1000);
             $scope.progreso=2;
-            $(".href-ruta").css('visibility', 'visible');
+            $(".reporteVyV").css('visibility', 'visible');
             console.log($scope.progreso);
 
             setTimeout(function(){
@@ -277,11 +281,7 @@ function Dist(lat1, lon1, lat2, lon2)
   $(function() { //shorthand document.ready function
     $('#form_ubicacion').on('submit', function(e) { //use on if jQuery 1.7+
         e.preventDefault();  //prevent form from submitting
-        console.log($("#cantidad").val())
-        if($("#cantidad").val()!=""){
-          buscarCaminos();  
-        }
-        
+        buscarCaminos();         
       });
     $('#ubicacion').on('input',function(e){
       setAllMap(null);
