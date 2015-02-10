@@ -1,7 +1,5 @@
  
-var casasExistentes = [{lat :-36.6684189189478, lon : -64.259033203125, cantidad:2}
-                      ,{lat :-42.32200108060304 , lon :   -70.037841796875, cantidad:4}
-                      ,{lat :-36.870832155646305, lon :  -59.886474609375, cantidad:8}] ;
+var casasExistentes = casas = JSON.parse(window.localStorage['casas'] || '[]');
 
 var markers = [];
 var polylineas ;
@@ -14,8 +12,7 @@ var mapOptions = {
 var map;
 
 var geocoder = new google.maps.Geocoder();
-var directionsDisplay = new google.maps.DirectionsRenderer();
-var directionsService = new google.maps.DirectionsService();
+
 
 
 function initialize() {

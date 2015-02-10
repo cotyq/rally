@@ -9,28 +9,33 @@ angular.module('solicitarApp', []).controller('solicitarCtrl', ['$scope', functi
   {nombre:"Termotanque" , descripcion:"Dispositivo eléctrico o de gas empleado para calentar el agua corriente para su uso doméstico. Algunos son capaces de producir esta calefacción bajo demanda, mientras que otros almacenan una determinada cantidad de agua precalentada.",imagen:"termotanque.jpg",cantidad:0},
   {nombre:"Aislamiento térmico: Lana de vidrio" , descripcion:"La lana de vidrio es una fibra mineral fabricada con millones de filamentos de vidrio unidos con un aglutinante. El espacio libre con aire atrapado entre las fibras aumentan la resistencia a la transmisión de calor.",imagen:"lana.jpg",cantidad:0},
   {nombre:"Aislante termico: Lana de roca" , descripcion:"La lana de roca, perteneciente a la familia de las lanas minerales, es un material fabricado a partir de la roca volcánica. Se utiliza principalmente como aislamiento térmico y como protección pasiva contra el fuego en la edificación, debido a su estructura fibrosa multidireccional, que le permite albergar aire relativamente inmóvil en su interior.",cantidad:0,imagen:"lanaroca.jpg"}];
-
+  var cantidad=0;
   $scope.progreso=1;
   $scope.model_fechaActual = new Date();
   $scope.accesoriosFiltrados=[];
-  $scope.validarAccesorios = function(){
-  	if($scope.progreso==2){
-  		$scope.completado=true;
-  		$("#accesorios").animate({backgroundColor:"#CDEB8B"},1000);
 
-     $(".progreso2").switchClass('col-md-6','col-md-3',1000)
+  $scope.confirmar = function(){
+   window.localStorage['casas']=JSON.stringify(casasExistentes);
+  }
 
-     $(".progreso2").animate({backgroundColor:"#CDEB8B"},1000);
-     $("#verificacion").animate({backgroundColor:"#C3D9FF"},1000);
+ $scope.validarAccesorios = function(){
+   if($scope.progreso==2){
+    $scope.completado=true;
+    $("#accesorios").animate({backgroundColor:"#CDEB8B"},1000);
 
-     angular.forEach($scope.accesorios, function(value,key){
-        if(value.cantidad>0){
-          $scope.accesoriosFiltrados.push(value);
-        }
-     });
-     $scope.$apply();
+    $(".progreso2").switchClass('col-md-6','col-md-3',1000)
 
-     setTimeout(function(){
+    $(".progreso2").animate({backgroundColor:"#CDEB8B"},1000);
+    $("#verificacion").animate({backgroundColor:"#C3D9FF"},1000);
+
+    angular.forEach($scope.accesorios, function(value,key){
+      if(value.cantidad>0){
+        $scope.accesoriosFiltrados.push(value);
+      }
+    });
+    $scope.$apply();
+
+    setTimeout(function(){
 	      /*$("#l2").click();
 	      $(".progreso1").css("border-left","solid 0px");
 	      $(".progreso2").css("border-left","solid 20px",1000);*/
@@ -40,7 +45,7 @@ angular.module('solicitarApp', []).controller('solicitarCtrl', ['$scope', functi
 
 
 	    },1500);
-   }  else  {
+  }  else  {
     alert("Debes indicar primero la ubicacion de tus casas.")
   }
 
@@ -51,9 +56,10 @@ function marcarLineas(){
   var dist  = 9999999999;
   var marcaMasCercana ;
   var ubicacion = document.getElementById('ubicacion').value;
-  var cantidad = document.getElementById('cantidad').value;
+  cantidad = document.getElementById('cantidad').value;
 
   console.log(ubicacion);
+
   if(markers[0]==undefined ){
     alert("Debe seleccionar una posicion en el mapa.")
   } else  {
@@ -64,7 +70,7 @@ function marcarLineas(){
         map: map,
         icon: 'casa2.png',
       });
-      if(parseInt(distancia) < parseInt(dist) && cantidad<= marker.cantidad){
+      if(parseInt(distancia) < parseInt(dist)){
         marcaMasCercana = marker;
         dist = distancia;
       }
@@ -83,27 +89,28 @@ function marcarLineas(){
 function buscarCaminos(){
 
   var ubicacion = document.getElementById('ubicacion').value;
+  cantidad = document.getElementById('cantidad').value;
 
   if(markers[0]!=undefined){
 
    obtenerNombre(markers[0].position.k,markers[0].position.D)
 
-   } else if(ubicacion!=""){
+ } else if(ubicacion!=""){
 
-    obtenerCoordenadas(ubicacion);
+  obtenerCoordenadas(ubicacion);
 
-  } else {
-   $( "#dialog" ).dialog( "open" );
+} else {
+ $( "#dialog" ).dialog( "open" );
 
         //alert("Debe seleccionar una posicion en el mapa o escribir una ubicacion.")
       }
     }
 
 
-  function obtenerNombre(lat,lng){
-    var latLng = new google.maps.LatLng(lat,lng);
+    function obtenerNombre(lat,lng){
+      var latLng = new google.maps.LatLng(lat,lng);
 
-    geocoder.geocode( { 'latLng': latLng}, function(results, status) {
+      geocoder.geocode( { 'latLng': latLng}, function(results, status) {
 
         //si el estado de la llamado es OK
         if (status == google.maps.GeocoderStatus.OK) {
@@ -120,12 +127,12 @@ function buscarCaminos(){
           alert("No podemos encontrar la direcci&oacute;n, error: " + status);
         }
       });
-  }
+    }
 
 
-  function obtenerCoordenadas(ubicacion){
-    console.log(ubicacion);
-    geocoder.geocode( { 'address': ubicacion}, function(results, status) {
+    function obtenerCoordenadas(ubicacion){
+      console.log(ubicacion);
+      geocoder.geocode( { 'address': ubicacion}, function(results, status) {
 
         //si el estado de la llamado es OK
         if (status == google.maps.GeocoderStatus.OK) {
@@ -142,72 +149,98 @@ function buscarCaminos(){
           alert("No podemos encontrar la direcci&oacute;n, error: " + status);
         }
       });
-  }
-  function obtenerCamino(origen){
-    var dist  = 9999999999;
-    var marcaMasCercana ;
-    var mejorRespuesta  ;
-    var cantidad = document.getElementById('cantidad').value;
+    }
+    function obtenerCamino(origen){
 
-    casasExistentes.forEach(function(marker) {
-      var distancia = Dist(marker.lat,marker.lon,origen.geometry.location.k,origen.geometry.location.D);
-      var beachMarker = new google.maps.Marker({
-        position: new google.maps.LatLng(marker.lat,+marker.lon),
-        map: map,
-        icon: 'casa2.png',
-      });
-      if(parseInt(distancia) < parseInt(dist) && cantidad<= marker.cantidad){
-        marcaMasCercana = marker;
-        dist = distancia;
-      }
-    });
-    console.log(origen.formatted_address);
-    if(marcaMasCercana!=undefined){
-      var request = {
-       origin: origen.formatted_address,
-       destination: marcaMasCercana.lat+","+marcaMasCercana.lon,
-       travelMode: google.maps.TravelMode.DRIVING,
-       unitSystem: google.maps.UnitSystem.METRIC,
-       avoidHighways: false,
-       avoidTolls: false
-     };
-     
 
-     directionsService.route(request, function(response, status) {
-      if (status == google.maps.DirectionsStatus.OK) {
-            directionsDisplay.setMap(map);
-            directionsDisplay.setPanel($("#panel_ruta").get(0));
-            directionsDisplay.setDirections(response);
-            if(markers[0]!=undefined) {markers[0].setMap(null);}
+      casasSeleccionadas = [];
 
-            var efectos = $("#ubicacion-contenedor").animate({backgroundColor:"#CDEB8B"},1000);
+      for (var i = cantidad; i > 0; i--) {
+        var dist  = 9999999999;
+        var marcaMasCercana ;
+        var index = 0;
+        var j=0;
+        casasExistentes.forEach(function(marker) {
 
-            $(".progreso1").switchClass('col-md-6','col-md-3',1000)
-
-            $(".progreso1").animate({backgroundColor:"#CDEB8B"},1000);
-            $("#accesorios").animate({backgroundColor:"#C3D9FF"},1000);
-            $scope.progreso=2;
-            $(".reporteVyV").css('visibility', 'visible');
-            console.log($scope.progreso);
-
-            setTimeout(function(){
-              /*$("#l2").click();
-              $(".progreso1").css("border-left","solid 0px");
-              $(".progreso2").css("border-left","solid 20px",1000);*/
-              $(".progreso2").switchClass('col-md-3','col-md-6',1000)
-              $(".progreso2").animate({backgroundColor:"#C3D9FF"},1000);
-              document.getElementById("progreso1_estado").innerHTML ="Completado";
-              
-
-            },1500);
-            
-          } else {
-            alert("No se encontro ninguna camino que llege a "+origen.formatted_address+" por favor seleccione una ubicacion mas cercana a una ruta o ciudad.");
+          var distancia = Dist(marker.lat,marker.lon,origen.geometry.location.k,origen.geometry.location.D);
+          var beachMarker = new google.maps.Marker({
+            position: new google.maps.LatLng(marker.lat,+marker.lon),
+            map: map,
+            icon: 'casa2.png',
+          });
+          if(parseInt(distancia) < parseInt(dist) && 
+            (marker.hasta == undefined 
+              || Date.parse(marker.hasta) < Date.parse($scope.model_desde))){
+            marcaMasCercana = marker;
+            dist = distancia;
+            index=j;
           }
-        }); 
-} else  {
-  alert("No existe disponibilidad de casas.");
-} 
+          j++;
+        });
+        if(marcaMasCercana!=undefined){
+          casasExistentes[index].hasta = $scope.model_hasta;
+          casasExistentes[index].desde = $scope.model_desde;
+          casasSeleccionadas.push(marcaMasCercana);
+          cantidad--;
+        }
+      };
+      if(cantidad==0){
+        casasSeleccionadas.forEach(function(casa){
+         console.log(origen.formatted_address);
+         if(casa!=undefined){
+          var request = {
+           origin: origen.formatted_address,
+           destination: casa.lat+","+casa.lon,
+           travelMode: google.maps.TravelMode.DRIVING,
+           unitSystem: google.maps.UnitSystem.METRIC,
+           avoidHighways: false,
+           avoidTolls: false};
+
+           var directionsDisplay = new google.maps.DirectionsRenderer();
+           var directionsService = new google.maps.DirectionsService();
+
+           directionsService.route(request, function(response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+              directionsDisplay.setMap(map);
+              directionsDisplay.setPanel($("#panel_ruta").get(0));
+              directionsDisplay.setDirections(response);
+              if(markers[0]!=undefined) {markers[0].setMap(null);}
+              $scope.progreso=2;
+
+              $scope.completado1=true;
+
+            }
+          });
+
+         } else {
+          alert("No se encontro ninguna camino que llege a "+origen.formatted_address+" por favor seleccione una ubicacion mas cercana a una ruta o ciudad.");
+        }
+      }); 
+
+var efectos = $("#ubicacion-contenedor").animate({backgroundColor:"#CDEB8B"},1000);
+
+$(".progreso1").switchClass('col-md-6','col-md-3',1000)
+
+$(".progreso1").animate({backgroundColor:"#CDEB8B"},1000);
+$("#accesorios").animate({backgroundColor:"#C3D9FF"},1000);
+
+$(".reporteVyV").css('visibility', 'visible');
+
+
+setTimeout(function(){
+            /*$("#l2").click();
+            $(".progreso1").css("border-left","solid 0px");
+            $(".progreso2").css("border-left","solid 20px",1000);*/
+            $(".progreso2").switchClass('col-md-3','col-md-6',1000)
+            $(".progreso2").animate({backgroundColor:"#C3D9FF"},1000);
+            document.getElementById("progreso1_estado").innerHTML ="Completado";
+            
+
+          },1500);
+}  else {
+  alert("no alcanzan las casas para abastecer en ese periodo.")
+}
+
 
 }
 
@@ -288,6 +321,8 @@ function Dist(lat1, lon1, lat2, lon2)
 
       markers=[];
     });
+
+
 
     $(window).scroll(function(){
       if($('.accesorios').offset().top > $(window).scrollTop()+200){
