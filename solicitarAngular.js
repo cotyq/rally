@@ -18,6 +18,12 @@ angular.module('solicitarApp', []).controller('solicitarCtrl', ['$scope', functi
    window.localStorage['casas']=JSON.stringify(casasExistentes);
   }
 
+  $scope.marcarMapa = function(){
+    if($scope.progreso==1){
+      $scope.model_ubicacion='Marca'
+     
+    };
+  }
  $scope.validarAccesorios = function(){
    if($scope.progreso==2){
     $scope.completado=true;
@@ -157,9 +163,10 @@ function buscarCaminos(){
 
       for (var i = cantidad; i > 0; i--) {
         var dist  = 9999999999;
-        var marcaMasCercana ;
+        
         var index = 0;
         var j=0;
+        var marcaMasCercana ;
         casasExistentes.forEach(function(marker) {
 
           var distancia = Dist(marker.lat,marker.lon,origen.geometry.location.k,origen.geometry.location.D);
@@ -181,6 +188,7 @@ function buscarCaminos(){
           casasExistentes[index].hasta = $scope.model_hasta;
           casasExistentes[index].desde = $scope.model_desde;
           casasSeleccionadas.push(marcaMasCercana);
+          marcaMasCercana=undefined;
           cantidad--;
         }
       };
