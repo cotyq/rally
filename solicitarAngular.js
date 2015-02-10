@@ -21,7 +21,7 @@ angular.module('solicitarApp', []).controller('solicitarCtrl', ['$scope', functi
   $scope.marcarMapa = function(){
     if($scope.progreso==1){
       $scope.model_ubicacion='Marca'
-     
+
     };
   }
  $scope.validarAccesorios = function(){
@@ -158,7 +158,7 @@ function buscarCaminos(){
     }
     function obtenerCamino(origen){
 
-
+      console.log(origen);
       casasSeleccionadas = [];
 
       for (var i = cantidad; i > 0; i--) {
@@ -192,7 +192,9 @@ function buscarCaminos(){
           cantidad--;
         }
       };
+
       if(cantidad==0){
+        console.log(casasSeleccionadas);
         casasSeleccionadas.forEach(function(casa){
          console.log(origen.formatted_address);
          if(casa!=undefined){
@@ -210,13 +212,30 @@ function buscarCaminos(){
            directionsService.route(request, function(response, status) {
             if (status == google.maps.DirectionsStatus.OK) {
               directionsDisplay.setMap(map);
-              directionsDisplay.setPanel($("#panel_ruta").get(0));
+              $("#panel_ruta").append("<div class='casa_title'><strong>Casa Serie N° "
+                +casa.serie+
+                "</strong></div><div id='casa"+casa.serie+"'></div>")
+              var id = 'casa'+casa.serie;
+              directionsDisplay.setPanel($("#"+id).get(0));
               directionsDisplay.setDirections(response);
               if(markers[0]!=undefined) {markers[0].setMap(null);}
               $scope.progreso=2;
 
               $scope.completado1=true;
 
+            } else {
+              var ruta = [new google.maps.LatLng(origen.geometry.location.k, origen.geometry.location.D),
+              new google.maps.LatLng(casa.lat, casa.lon)];
+              polylineas = new google.maps.Polyline({        
+                path: ruta,
+                map: map, 
+                strokeColor: '#FF0000', 
+                strokeWeight: 4,  
+                strokeOpacity: 0.6, 
+                clickable: false     });
+                $("#panel_ruta").append("<div class='casa_title'><strong>Casa Serie N° "
+                  +casa.serie+
+                "</strong></div><div id='casa"+casa.serie+"'>No se pudo encontrar una ruta.</div>")
             }
           });
 
@@ -322,7 +341,12 @@ function Dist(lat1, lon1, lat2, lon2)
   $(function() { //shorthand document.ready function
     $('#form_ubicacion').on('submit', function(e) { //use on if jQuery 1.7+
         e.preventDefault();  //prevent form from submitting
-        buscarCaminos();         
+        if(Date.parse($scope.model_desde) < Date.parse($scope.model_hasta)){
+          buscarCaminos();
+        } else{
+          alert("La fecha DESDE debe ser menor que HASTA")
+        }
+                 
       });
     $('#ubicacion').on('input',function(e){
       setAllMap(null);
