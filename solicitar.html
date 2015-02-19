@@ -19,7 +19,7 @@
       <script type="text/javascript" src="map.js"></script>
       <script type="text/javascript" src="solicitar.js"></script>
       <script type="text/javascript" src="solicitarAngular.js"></script>
-
+      <script src="js/flowtype.js"></script>
 
       <!-------------- Fuentes ---------------------->
       <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700,400' rel='stylesheet' type='text/css'>
@@ -178,33 +178,35 @@
               <span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Permite filtrar los accesorios por nombre, para encontrarlos de manera mas veloz.">
               </span>  
               <label class="modoResumido">
-               &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"  ng-model="resumirAccesorios">&nbsp; Modo resumido &nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"  ng-model="resumirAccesorios" ng-click="modoResumido()">&nbsp; Modo resumido &nbsp;
                <span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Desactiva la descripcion y las imagenes para acelerar el tramite.">
                </span>
              </label>
            </center>
          </div>
          <form id="form_accesorios" ng-submit="validarAccesorios()" >
-          <div  class="accesorios_items"  ng-repeat="accesorio in accesorios| filter:{nombre:filtroNombre}" >
-            <div class="row" >
-              <div class="col-md-2"><img ng-src="img/{{accesorio.imagen}}" ng-hide="resumirAccesorios" class="img-thumbnail accesorios_imagen" height="110"> </div>
+          <div class="row">
+          <div  class="col-md-12 accesorios_items"  ng-repeat="accesorio in accesorios| filter:{nombre:filtroNombre}"
+              ng-class="{'col-md-6': resumirAccesorios, 'col-md-12': !resumirAccesorios}" >
+              <div class="col-md-2" ng-hide="resumirAccesorios"><img ng-src="img/{{accesorio.imagen}}"  class="img-thumbnail accesorios_imagen" height="110"> </div>
               <div class="col-md-10">
-                <div class="col-md-9">
+                <div class="accesorio_texto" ng-class="{'col-md-12': resumirAccesorios, 'col-md-9': !resumirAccesorios}">
                   <div class="accesorio_titulo">{{ accesorio.nombre}}</div>
                   <div class="accesorio_descripcion" ng-hide="resumirAccesorios">
                     <strong>Descripción:</strong>
                     {{ accesorio.descripcion}}</div>
                   </div>
-                  <div class="col-md-3 accesorio_cantidad">
-                    <label for="hasta" class="col-xs-4 col-sm-8 control-label">Cantidad</label>
+                  <div class="form-group accesorio_cantidad" ng-class="{'col-md-12': resumirAccesorios, 'col-md-3': !resumirAccesorios}">
+                    <label for="hasta" class="col-xs-4 col-sm-8 control-label"  ng-hide="resumirAccesorios"><span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Permite indicar a cantidad requerida de {{accesorio.nombre}}.">Cantidad</label>
                     <div class="col-xs-8 col-sm-9">
                       <input ng-model="accesorio.cantidad" min="0" type="number" pattern="[0-9]*" class="form-control"   ng-disabled="completado" required>
+
                     </div> 
                   </div>
                 </div>
-              </div>
             </div>
-            <div class="accesorios_botoner">
+            </div>
+            <div class="col-md-12 accesorios_botoner">
               <button type="submit"   class="btn btn-success" >Completar</button>
             </div>
           </form>

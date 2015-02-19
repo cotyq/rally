@@ -13,9 +13,29 @@ angular.module('solicitarApp', []).controller('solicitarCtrl', ['$scope', functi
   $scope.progreso=1;
   $scope.model_fechaActual = new Date();
   $scope.accesoriosFiltrados=[];
+  
+  $('.accesorio_titulo').flowtype();
+
+  $('.accesorio_titulo').flowtype({
+   minimum   : 500,
+   maximum   : 1200,
+   minFont   : 12,
+   maxFont   : 40,
+   fontRatio : 30
+  });
+
 
   $scope.confirmar = function(){
    window.localStorage['casas']=JSON.stringify(casasExistentes);
+
+      $("#verificacion").animate({backgroundColor:"#CDEB8B"},1000);
+
+    $(".progreso3").switchClass('col-md-6','col-md-3',1000)
+
+    $(".progreso3").animate({backgroundColor:"#CDEB8B"},1000);
+
+    $scope.$apply();
+
   }
 
   $scope.marcarMapa = function(){
@@ -23,6 +43,24 @@ angular.module('solicitarApp', []).controller('solicitarCtrl', ['$scope', functi
       $scope.model_ubicacion='Marca'
 
     };
+  }
+
+  $scope.modoResumido = function(){
+    /*
+    if(! $scope.resumirAccesorios){
+      $(".accesorios_items").css('padding','1em',1000);
+      $(".accesorio_titulo").css('padding','1em',1000)
+      $(".accesorio_texto").switchClass('col-md-6','col-md-9');
+      $(".accesorio_cantidad").switchClass('col-md-6','col-md-3');
+
+    } else  {
+        $(".accesorios_items").css('padding','0.1em',1000)
+        $(".accesorios_items").css('padding-left','2em',1000)
+        $(".accesorio_titulo").css('padding','0.1em',1000)
+        $(".accesorio_texto").switchClass('col-md-9','col-md-6')
+        $(".accesorio_cantidad").switchClass('col-md-3','col-md-6')
+    }*/
+    
   }
  $scope.validarAccesorios = function(){
    if($scope.progreso==2){
@@ -210,6 +248,7 @@ function buscarCaminos(){
            var directionsService = new google.maps.DirectionsService();
 
            directionsService.route(request, function(response, status) {
+            $scope.progreso=2;
             if (status == google.maps.DirectionsStatus.OK) {
               directionsDisplay.setMap(map);
               $("#panel_ruta").append("<div class='casa_title'><strong>Casa Serie N° "
@@ -219,7 +258,7 @@ function buscarCaminos(){
               directionsDisplay.setPanel($("#"+id).get(0));
               directionsDisplay.setDirections(response);
               if(markers[0]!=undefined) {markers[0].setMap(null);}
-              $scope.progreso=2;
+              
 
               $scope.completado1=true;
 
