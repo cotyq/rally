@@ -35,7 +35,6 @@ function initialize() {
       position: event.latLng,
       map: map,
       animation: google.maps.Animation.BOUNCE,
-      title: 'Hello World!'
     });
 
     marker.setAnimation(google.maps.Animation.BOUNCE);
@@ -49,8 +48,21 @@ function initialize() {
     if(polylineas!=undefined)
         polylineas.setMap(map);
   }
-}
 
+  
+}
+function agregarMarca(marker){
+
+    var beachMarker = new google.maps.Marker({
+        position: new google.maps.LatLng(marker.position.k,+marker.position.D),
+        map: map,
+        icon: 'casa2.png',
+      });
+
+    markers.push(beachMarker);
+
+
+  }
   function setAllMap(map) {
     for (var i = 0; i < markers.length; i++) {
       markers[i].setMap(map);

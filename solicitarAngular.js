@@ -3,7 +3,7 @@
 *
 * Description
 */
-angular.module('solicitarApp', []).controller('solicitarCtrl', ['$scope', function ($scope) {
+angular.module('solicitarApp', ['ui-notification']).controller('solicitarCtrl', function ($scope,Notification) {
 	$scope.accesorios = [{nombre:"Panel Solar" , descripcion:"Un panel solar (o módulo solar) es un dispositivo que aprovecha la energía de la radiación solar. El término comprende a los colectores solares utilizados para producir agua caliente (usualmente doméstica) mediante energía solar térmica y a los paneles fotovoltaicos utilizados para generar electricidad mediante energía solar fotovoltaica.",imagen:"panel_solar.png",cantidad:0},
   {nombre:"Ventilador eolico" , descripcion:"La explotación de una turbina de 1 MW instalada en un parque eólico puede llegar a evitar 2000 toneladas de dióxido de carbono (CO2), si la electricidad producida ha sido emitida por centrales termoeléctricas.",cantidad:0,imagen:"ventilador.png"},
   {nombre:"Termotanque" , descripcion:"Dispositivo eléctrico o de gas empleado para calentar el agua corriente para su uso doméstico. Algunos son capaces de producir esta calefacción bajo demanda, mientras que otros almacenan una determinada cantidad de agua precalentada.",imagen:"termotanque.jpg",cantidad:0},
@@ -13,6 +13,8 @@ angular.module('solicitarApp', []).controller('solicitarCtrl', ['$scope', functi
   $scope.progreso=1;
   $scope.model_fechaActual = new Date();
   $scope.accesoriosFiltrados=[];
+
+
   
   $('.accesorio_titulo').flowtype();
 
@@ -26,15 +28,28 @@ angular.module('solicitarApp', []).controller('solicitarCtrl', ['$scope', functi
 
 
   $scope.confirmar = function(){
-   window.localStorage['casas']=JSON.stringify(casasExistentes);
+    if($scope.progreso==3){
+      window.localStorage['casas']=JSON.stringify(casasExistentes);
 
-      $("#verificacion").animate({backgroundColor:"#CDEB8B"},1000);
+    $("#verificacion").animate({backgroundColor:"#CDEB8B"},1000);
 
     $(".progreso3").switchClass('col-md-6','col-md-3',1000)
 
     $(".progreso3").animate({backgroundColor:"#CDEB8B"},1000);
-
+    document.getElementById("progreso3_estado").innerHTML ="Completado";
     $scope.$apply();
+    Notification.success({message: 'Datos confirmados en 5 segundos sera redireccionado al inicio.',
+      title:"Datos confirmados", delay: 3000});
+
+    setTimeout(function(){
+            window.location.assign("home.html");
+          },5000);
+
+    } else  {
+      Notification.error({message: 'Primero debe completar los pasos anteriores',title:"Datos incompletos", delay: 1500});
+    }
+   
+    
 
   }
 
@@ -78,7 +93,9 @@ angular.module('solicitarApp', []).controller('solicitarCtrl', ['$scope', functi
       }
     });
     $scope.$apply();
-
+    Notification({message: 'Accesorios cargados existosamente.',
+      title:"Paso 2 completado", delay: 3000})
+    $scope.progreso=3;
     setTimeout(function(){
 	      /*$("#l2").click();
 	      $(".progreso1").css("border-left","solid 0px");
@@ -232,6 +249,8 @@ function buscarCaminos(){
       };
 
       if(cantidad==0){
+        Notification({message: "Ubicacion cargados existosamente.",
+      title:"Paso 1 completado", delay: 3000});
         console.log(casasSeleccionadas);
         casasSeleccionadas.forEach(function(casa){
          console.log(origen.formatted_address);
@@ -246,7 +265,6 @@ function buscarCaminos(){
 
            var directionsDisplay = new google.maps.DirectionsRenderer();
            var directionsService = new google.maps.DirectionsService();
-
            directionsService.route(request, function(response, status) {
             $scope.progreso=2;
             if (status == google.maps.DirectionsStatus.OK) {
@@ -404,6 +422,6 @@ function Dist(lat1, lon1, lat2, lon2)
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()
   })
-}])
+})
 
 

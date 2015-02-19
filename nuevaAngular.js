@@ -1,4 +1,4 @@
-angular.module('casasApp', []).controller('casasCtrl', ['$scope', function ($scope) {
+angular.module('casasApp', ['ui-notification']).controller('casasCtrl',  function ($scope,Notification) {
 
 	$(function() { 
 		$('#form-crearCasa').on('submit', function(e) { //use on if jQuery 1.7+
@@ -10,13 +10,16 @@ angular.module('casasApp', []).controller('casasCtrl', ['$scope', function ($sco
 			casas.push(casa);
 			window.localStorage['casas']=JSON.stringify(casas);
 			
-			alert("La casa N°"+$scope.nSerie +" a sido registrada en el sistema.")
+
+			Notification.success('La casa N°'+$scope.nSerie +' a sido registrada en el sistema.');
+			//alert("La casa N°"+$scope.nSerie +" a sido registrada en el sistema.")
 
 			$scope.nSerie="";
-			$scope.$apply();
-
+			
+			if(markers[0]!=undefined) { agregarMarca(markers[0])};
 			if(markers[0]!=undefined) {markers[0].setMap(null);}
+			$scope.$apply();
 		});
 	});
 }
-]);
+);
